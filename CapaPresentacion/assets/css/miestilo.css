@@ -1,0 +1,12 @@
+﻿.form-control.form-new {
+    background-color: #ffffff; /* Fondo completamente blanco */
+    border: 1px solid #ced4da; /* Gris estándar de Bootstrap, mucho más visible que #eeeeee */
+    color: #495057; /* Texto un poco más oscuro para mejor legibilidad */
+}
+
+    /* Estilo cuando el usuario hace clic en el input (Focus) */
+    .form-control.form-new:focus {
+        background-color: #ffffff;
+        border-color: #80bdff; /* Borde azul claro */
+        box-shadow: 0 0 0 0.2rem rgba(50, 146, 224, 0.25) !important; /* Sombra suave con el color primary de tu template (#3292e0) */
+    }

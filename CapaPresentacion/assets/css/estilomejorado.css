@@ -1,0 +1,218 @@
+/* ==========================================================================
+   IDENTIDAD CORPORATIVA EMI - WEBADMIN TEMPLATE
+   ========================================================================== */
+
+:root {
+    /* Colores Principales */
+    --emi-blue-primary: #004F9F;
+    --emi-yellow-primary: #FFDD00;
+    
+    /* Colores Secundarios */
+    --emi-blue-dark: #003D7C;
+    --emi-blue-light: #DFEAF8;
+    --emi-yellow-dark: #EAB500;
+    
+    /* Textos y Fondos Generales */
+    --text-white: #FFFFFF;
+    --text-dark: #333333;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR (TOPBAR Y NAVBAR)
+   ========================================================================== */
+   
+/* Contenedor del logo */
+.topbar .topbar-left {
+    background-color: var(--emi-blue-dark) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Color del texto del Logo */
+.topbar .topbar-left .logo,
+.topbar .topbar-left .logo-sm {
+    color: var(--text-white) !important;
+}
+
+/* El span dentro del logo ('Web' en WebAdmin) */
+.topbar .topbar-left .logo span {
+    color: var(--emi-yellow-primary) !important;
+}
+
+/* Barra de navegación superior */
+.navbar-default {
+    background-color: var(--emi-blue-primary) !important;
+    border-bottom: 3px solid var(--emi-yellow-primary) !important;
+}
+
+/* Iconos de la barra superior (menú hamburguesa, fullscreen, etc.) */
+.navbar-default .button-menu-mobile,
+.navbar-default .notification-icon-box {
+    color: var(--text-white) !important;
+}
+
+.navbar-default .button-menu-mobile:hover,
+.navbar-default .notification-icon-box:hover {
+    color: var(--emi-yellow-primary) !important;
+}
+
+/* ==========================================================================
+   MENÚ LATERAL (SIDEBAR) - CORRECCIÓN DE FONDOS Y TEXTOS
+   ========================================================================== */
+
+   /* Textos de usuario en el menú */
+.user-details .user-info a,
+.user-details .user-info p {
+    color: var(--emi-blue-light) !important;
+}
+
+/* 1. Forzar el fondo azul oscuro en todos los contenedores del menú */
+.left.side-menu,
+.sidebar-inner,
+#sidebar-menu,
+#sidebar-menu ul,
+#sidebar-menu ul li {
+    background-color: var(--emi-blue-dark) !important;
+}
+
+/* 2. Color de texto e íconos inactivos (Blanco con un poco de transparencia) */
+#sidebar-menu ul li a {
+    color: rgba(255, 255, 255, 0.75) !important;
+    background-color: transparent !important;
+}
+#sidebar-menu ul li a i {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* 3. Efecto Hover (pasar el mouse) y Menú Activo */
+#sidebar-menu ul li a:hover,
+#sidebar-menu ul li a.active,
+#sidebar-menu ul li a.subdrop {
+    color: var(--emi-yellow-primary) !important;
+    background-color: rgba(0, 0, 0, 0.15) !important; /* Un sombreado sutil */
+    border-left: 3px solid var(--emi-yellow-primary) !important;
+}
+
+/* 4. Íconos en Hover o Activos (Amarillos) */
+#sidebar-menu ul li a:hover i,
+#sidebar-menu ul li a.active i,
+#sidebar-menu ul li a.subdrop i {
+    color: var(--emi-yellow-primary) !important;
+}
+
+/* 5. Fondo diferenciado para los submenús (desplegables) */
+#sidebar-menu ul ul {
+    background-color: rgba(0, 0, 0, 0.1) !important; /* Lo oscurecemos un poquito más para separar visualmente */
+}
+
+/* Color de texto para los enlaces dentro de los submenús */
+#sidebar-menu ul ul li a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    border-left: none !important; /* Quitamos el borde izquierdo en los submenús para que no se vea recargado */
+}
+#sidebar-menu ul ul li a:hover {
+    color: var(--text-white) !important;
+    background-color: transparent !important;
+}
+
+/* ==========================================================================
+   ELEMENTOS DE INTERFAZ (BOTONES, BADGES Y PANELES)
+   ========================================================================== */
+
+/* Sobrescribir botones primarios */
+.btn-primary {
+    background-color: var(--emi-blue-primary) !important;
+    border-color: var(--emi-blue-primary) !important;
+    color: var(--text-white) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--emi-blue-dark) !important;
+    border-color: var(--emi-blue-dark) !important;
+}
+
+/* Sobrescribir botones "Success" o de acción destacada (Guardar) */
+.btn-success {
+    background-color: var(--emi-yellow-primary) !important;
+    border-color: var(--emi-yellow-dark) !important;
+    color: var(--emi-blue-dark) !important; /* Texto oscuro para legibilidad sobre amarillo */
+    font-weight: bold;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background-color: var(--emi-yellow-dark) !important;
+    border-color: var(--emi-yellow-dark) !important;
+    color: var(--text-white) !important;
+}
+
+/* Badges (Notificaciones, conteos) */
+.badge-primary {
+    background-color: var(--emi-yellow-primary) !important;
+    color: var(--emi-blue-dark) !important;
+}
+
+.page-header-title {
+    background-color: var(--emi-blue-primary) !important;
+}
+
+/* Título de la página */
+.page-title {
+    color: var(--emi-blue-light) !important;
+    font-weight: 700;
+}
+
+/* Footer */
+.footer {
+    background-color: #f5f5f5 !important;
+    color: var(--emi-blue-primary) !important;
+    border-top: 1px solid #ddd;
+}
+
+.form-control.form-new {
+    background-color: #ffffff; /* Fondo completamente blanco */
+    border: 1px solid #ced4da; /* Gris estándar de Bootstrap, mucho más visible que #eeeeee */
+    color: #495057; /* Texto un poco más oscuro para mejor legibilidad */
+}
+
+    /* Estilo cuando el usuario hace clic en el input (Focus) */
+    .form-control.form-new:focus {
+        background-color: #ffffff;
+        border-color: #80bdff; /* Borde azul claro */
+        box-shadow: 0 0 0 0.2rem rgba(50, 146, 224, 0.25) !important; /* Sombra suave con el color primary de tu template (#3292e0) */
+    }
+
+/* ==========================================================================
+   CABECERAS DE PANELES Y TARJETAS
+   ========================================================================== */
+.card-header-emi {
+    background-color: var(--emi-blue-dark, #02264D) !important;
+    /* Un pequeño borde inferior amarillo le da un toque muy corporativo */
+    border-bottom: 3px solid var(--emi-yellow-primary, #FFDD00) !important;
+}
+
+/* ==========================================================================
+   BOTÓN PERSONALIZADO: WARNING EMI
+   ========================================================================== */
+.btn-emi-warning {
+    background-color: var(--emi-yellow-primary, #FFDD00) !important;
+    color: var(--emi-blue-dark, #02264D) !important;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+    .btn-emi-warning:hover,
+    .btn-emi-warning:focus {
+        /* Oscurecemos un poquito el amarillo al pasar el mouse */
+        background-color: var(--emi-yellow-dark, #EAB500) !important;
+        color: var(--emi-blue-dark, #02264D) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra para dar efecto de profundidad */
+    }
+
+    /* Evitar que el botón se quede con un contorno feo al hacer clic */
+    .btn-emi-warning:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 221, 0, 0.5) !important;
+    }

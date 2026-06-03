@@ -1,0 +1,11 @@
+﻿namespace CapaEntidad.Entidades
+{
+    public class AsistenciaDiario
+    {
+        public int IdHorario { get; set; }
+        public int IdEstado { get; set; }
+        public string HoraIngreso { get; set; }
+        public string HoraSalida { get; set; }
+        public int MinutosAtraso { get; set; }
+    }
+}

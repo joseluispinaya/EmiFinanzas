@@ -1,0 +1,104 @@
+﻿/* ==========================================================================
+   ESTILOS PERSONALIZADOS EMI - DASHBOARD INICIO
+   ========================================================================== */
+
+:root {
+    --emi-blue: #033C78; /* Azul extraído del logo */
+    --emi-blue-dark: #02264D; /* Azul más oscuro para hover */
+    --emi-yellow: #FFD100; /* Amarillo/Oro del castillo y texto */
+    --emi-yellow-hover: #E6BC00;
+}
+
+/* --- COLORES UTILITARIOS --- */
+.emi-text-primary {
+    color: var(--emi-blue) !important;
+}
+
+.emi-text-warning {
+    color: var(--emi-yellow) !important;
+}
+
+.emi-bg-light {
+    background-color: #EBF3FA !important; /* Un azul muy clarito para fondos */
+}
+
+/* --- HERO BANNER LÍQUIDO --- */
+.hero-emi {
+    /* Aquí usamos una imagen de tecnología/educación libre de derechos como fondo */
+    background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop') center center no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Capa oscura superpuesta para que el texto y el logo destaquen */
+.hero-overlay {
+    background: linear-gradient(135deg, rgba(3, 60, 120, 0.9) 0%, rgba(2, 38, 77, 0.85) 100%);
+    width: 100%;
+    height: 100%;
+}
+
+.logo-hero {
+    max-width: 220px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 8px;
+    border-bottom: 4px solid var(--emi-yellow);
+}
+
+.divider-emi {
+    border-top: 3px solid var(--emi-yellow);
+    width: 80px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+/* --- BOTONES PERSONALIZADOS --- */
+.btn-emi-warning {
+    background-color: var(--emi-yellow);
+    color: var(--emi-blue-dark);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+    .btn-emi-warning:hover {
+        background-color: var(--emi-yellow-hover);
+        color: var(--emi-blue-dark);
+        transform: translateY(-2px); /* Pequeño salto al pasar el mouse */
+    }
+
+.btn-outline-emi {
+    color: var(--emi-blue);
+    border: 1px solid var(--emi-blue);
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+    .btn-outline-emi:hover {
+        background-color: var(--emi-blue);
+        color: white;
+    }
+
+/* --- TARJETAS (CARDS) --- */
+.emi-card {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent !important;
+}
+
+    .emi-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        border-bottom: 3px solid var(--emi-yellow) !important; /* Línea amarilla al hacer hover */
+    }
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
+}
