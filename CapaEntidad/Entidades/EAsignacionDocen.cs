@@ -2,7 +2,7 @@
 {
     public class EAsignacionDocen
     {
-        public int IdAsignacion { get; set; }
+        //public int IdAsignacion { get; set; }
         public int IdDocente { get; set; }
         public int IdMateria { get; set; }
         public int IdGestion { get; set; }

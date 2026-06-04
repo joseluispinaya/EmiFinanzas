@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionBD.cs" />
+    <Compile Include="DAsignacionDocen.cs" />
+    <Compile Include="DAsistencia.cs" />
     <Compile Include="DCarrera.cs" />
     <Compile Include="DDocente.cs" />
     <Compile Include="DGradoAcademico.cs" />

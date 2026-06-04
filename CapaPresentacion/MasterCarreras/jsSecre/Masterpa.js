@@ -107,7 +107,7 @@ function AlertaTimerTipo(titulo, mensaje, tipo, timer) {
         text: mensaje,
         type: tipo,
         // Si le pasas un valor a timer lo usa; si no, usa 2000 por defecto
-        timer: timer || 3000,
+        timer: timer || 2000,
         showConfirmButton: false
     });
 }

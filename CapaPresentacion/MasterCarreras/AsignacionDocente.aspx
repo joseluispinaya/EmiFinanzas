@@ -63,7 +63,7 @@
                                     <span class="input-group-text bg-white font-weight-bold text-dark" style="width: 100px;">Tipo Asig.</span>
                                 </div>
                                 <select class="custom-select custom-select-sm" id="cboTipoAsignacion">
-                                    </select>
+                                </select>
                             </div>
 
                             <div class="input-group input-group-sm shadow-sm">
@@ -99,46 +99,55 @@
 
                 </div>
 
-                <hr class="mt-2 mb-4">
+                <hr>
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="font-weight-bold text-dark mb-3"><i class="fas fa-calendar-alt mr-2 text-primary"></i>Programación de Horarios</h5>
-                        
-                        <div class="bg-light p-3 rounded border shadow-sm mb-3">
-                            <div class="row align-items-end">
-                                <div class="col-md-3 col-sm-6 mb-2">
-                                    <label class="small font-weight-bold text-dark">Día de la Semana</label>
-                                    <select class="custom-select custom-select-sm" id="cboDia">
-                                        <option value="1">Lunes</option>
-                                        <option value="2">Martes</option>
-                                        <option value="3">Miércoles</option>
-                                        <option value="4">Jueves</option>
-                                        <option value="5">Viernes</option>
-                                        <option value="6">Sábado</option>
-                                    </select>
+                    <div class="col-12 mb-3">
+                        <h5 class="font-weight-bold text-dark m-0"><i class="fas fa-calendar-alt mr-2 text-primary"></i>Programación de Horarios</h5>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-5 mb-3">
+                        <div class="bg-light p-3 rounded border shadow-sm h-100">
+                            
+                            <div class="form-group mb-3">
+                                <label class="small font-weight-bold text-dark">Día de la Semana</label>
+                                <select class="custom-select custom-select-sm" id="cboDia">
+                                    <option value="1">Lunes</option>
+                                    <option value="2">Martes</option>
+                                    <option value="3">Miércoles</option>
+                                    <option value="4">Jueves</option>
+                                    <option value="5">Viernes</option>
+                                    <option value="6">Sábado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label class="small font-weight-bold text-dark">Hora Inicio</label>
+                                        <input type="time" class="form-control form-control-sm text-center font-weight-bold text-primary" id="txtHoraInicio">
+                                    </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6 mb-2">
-                                    <label class="small font-weight-bold text-dark">Hora Inicio</label>
-                                    <input type="time" class="form-control form-control-sm text-center" id="txtHoraInicio">
-                                </div>
-                                <div class="col-md-3 col-sm-6 mb-2">
-                                    <label class="small font-weight-bold text-dark">Hora Fin</label>
-                                    <input type="time" class="form-control form-control-sm text-center" id="txtHoraFin">
-                                </div>
-                                <div class="col-md-3 col-sm-6 mb-2">
-                                    <button type="button" id="btnAgregarHorario" class="btn btn-sm btn-outline-primary btn-block font-weight-bold">
-                                        <i class="fas fa-plus mr-1"></i> Agregar Día
-                                    </button>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label class="small font-weight-bold text-dark">Hora Fin</label>
+                                        <input type="time" class="form-control form-control-sm text-center font-weight-bold text-primary" id="txtHoraFin">
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <button type="button" id="btnAgregarHorario" class="btn btn-sm btn-outline-primary btn-block font-weight-bold shadow-sm">
+                                <i class="fas fa-plus mr-1"></i> Agregar Día
+                            </button>
+                            
                         </div>
+                    </div>
 
-                        <div class="table-responsive">
-                            <table id="tbHorarios" class="table table-sm table-bordered table-hover text-center align-middle">
+                    <div class="col-lg-8 col-md-7 mb-3">
+                        <div class="table-responsive h-100 bg-white p-2 border rounded shadow-sm">
+                            <table id="tbHorarios" class="table table-sm table-bordered table-hover text-center align-middle m-0">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th style="width: 100px;">IdDía</th>
                                         <th>Día</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
@@ -147,12 +156,11 @@
                                 </thead>
                                 <tbody>
                                     <tr id="trVacioHorarios">
-                                        <td colspan="5" class="text-muted font-italic py-3">No hay horarios agregados aún.</td>
+                                        <td colspan="4" class="text-muted font-italic py-4">No hay horarios agregados aún.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
 

@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\AsistenciaDiariaObtenerDTO.cs" />
+    <Compile Include="DTOs\DetalleHorarioDTO.cs" />
     <Compile Include="DTOs\MateriasDTO.cs" />
+    <Compile Include="DTOs\ObtenerAsigDocDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Entidades\AsistenciaDiario.cs" />
     <Compile Include="Entidades\EAsignacionDocen.cs" />

@@ -127,7 +127,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-table"></i><span>Asignacion </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="AsignacionDocente.aspx">Docente Materia</a></li>
-                                    <li><a href="#">Carreras</a></li>
+                                    <li><a href="ListaAsignaciones.aspx">Lista Asignacion</a></li>
                                 </ul>
                             </li>
 

@@ -48,7 +48,7 @@
                                         <i class="fas fa-user"></i>
                                     </span>
                                 </div>
-                                <input type="text" id="inputCorreo" class="form-control" placeholder="Usuario o Correo Institucional" value="carmeloleme@yopmail.com">
+                                <input type="text" id="inputCorreo" class="form-control" placeholder="Usuario o Correo Institucional" value="ubneresdev@yopmail.com">
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                                         <i class="fas fa-lock"></i>
                                     </span>
                                 </div>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" value="21222324">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" value="123456789">
                             </div>
                         </div>
 

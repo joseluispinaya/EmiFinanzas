@@ -396,6 +396,7 @@
     <Content Include="Inicio.aspx" />
     <Content Include="js\Login.js" />
     <Content Include="js\Masterpa.js" />
+    <Content Include="js\PanelAsistenciaDiaria.js" />
     <Content Include="js\PanelCarreras.js" />
     <Content Include="js\PanelDocentes.js" />
     <Content Include="js\PanelGrados.js" />
@@ -404,10 +405,13 @@
     <Content Include="Login.aspx" />
     <Content Include="MasterCarreras\AsignacionDocente.aspx" />
     <Content Include="MasterCarreras\jsSecre\AsignacionDoc.js" />
+    <Content Include="MasterCarreras\jsSecre\ListaAsignacion.js" />
     <Content Include="MasterCarreras\jsSecre\Masterpa.js" />
     <Content Include="MasterCarreras\jsSecre\PanelMaterias.js" />
+    <Content Include="MasterCarreras\ListaAsignaciones.aspx" />
     <Content Include="MasterCarreras\PanelInicio.aspx" />
     <Content Include="MasterCarreras\PanelMaterias.aspx" />
+    <Content Include="PanelAsistenciaDiaria.aspx" />
     <Content Include="PanelCarreras.aspx" />
     <Content Include="PanelDocentes.aspx" />
     <Content Include="PanelGrados.aspx" />
@@ -451,6 +455,13 @@
     <Compile Include="MasterCarreras\CarrerasMaster.Master.designer.cs">
       <DependentUpon>CarrerasMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterCarreras\ListaAsignaciones.aspx.cs">
+      <DependentUpon>ListaAsignaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\ListaAsignaciones.aspx.designer.cs">
+      <DependentUpon>ListaAsignaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterCarreras\PanelInicio.aspx.cs">
       <DependentUpon>PanelInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -464,6 +475,13 @@
     </Compile>
     <Compile Include="MasterCarreras\PanelMaterias.aspx.designer.cs">
       <DependentUpon>PanelMaterias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelAsistenciaDiaria.aspx.cs">
+      <DependentUpon>PanelAsistenciaDiaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelAsistenciaDiaria.aspx.designer.cs">
+      <DependentUpon>PanelAsistenciaDiaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelCarreras.aspx.cs">
       <DependentUpon>PanelCarreras.aspx</DependentUpon>
