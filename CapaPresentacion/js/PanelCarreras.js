@@ -181,6 +181,42 @@ $('#tbGrados tbody').on('click', '.btn-editar', function () {
 
 });
 
+$('#tbGrados tbody').on('click', '.btn-detalle', function () {
+
+    let fila = $(this).closest('tr');
+
+    if (fila.hasClass('child')) {
+        fila = fila.prev();
+    }
+
+    // Obtenemos los datos de la fila
+    let data = tablaData.row(fila).data();
+
+    // Transformamos el booleano en un texto amigable
+    let estadoTexto = data.Estado ? "✅ ACTIVO" : "❌ INACTIVO";
+
+    // Armamos el texto usando saltos de línea (\n) 
+    // Tu sweet-alert.min.js los convertirá en saltos de línea reales (<br>)
+    let textoDetalle =
+        "Carrera: " + data.NombreCarrera + "\n\n" +
+        "Sigla: " + data.Sigla + "\n" +
+        "Grado: " + data.NombreGrado + "\n\n" +
+        "Estado actual: " + estadoTexto + "\n" +
+        "-----------------------------------";
+
+    // Disparamos el modal usando tu imagen personalizada
+    swal({
+        title: "Detalle de la Carrera",
+        text: textoDetalle,
+        imageUrl: "assets/images/emiss.png",   // ¡Inyectamos tu imagen!
+        //customClass: "fondo-personalizado",
+        //imageSize: "80x80",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#004F9F"
+    });
+
+});
+
 $("#btnRegistro").on("click", function () {
 
     idEditar = 0;

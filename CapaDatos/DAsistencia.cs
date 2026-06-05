@@ -143,5 +143,68 @@ namespace CapaDatos
             }
         }
 
+        public Respuesta<int> GuardarAsistenciaMasiva(DateTime fecha, int idUsuarioRegistro, DataTable dtDatos)
+        {
+            Respuesta<int> response = new Respuesta<int>();
+            int resultadoCodigo = 0;
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_GuardarAsistenciaDiariaMasiva", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@Fecha", fecha.Date);
+                        cmd.Parameters.AddWithValue("@IdUsuarioRegistro", idUsuarioRegistro);
+
+                        // El parámetro mágico DataTable (TVP)
+                        SqlParameter tvpParam = new SqlParameter("@Datos", SqlDbType.Structured)
+                        {
+                            TypeName = "dbo.typ_AsistenciaDiaria",
+                            Value = dtDatos
+                        };
+                        cmd.Parameters.Add(tvpParam);
+
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        resultadoCodigo = Convert.ToInt32(outputParam.Value);
+                    }
+                }
+
+                response.Data = resultadoCodigo;
+
+                // Interpretamos el código que devuelve tu SP
+                if (resultadoCodigo == 1)
+                {
+                    response.Estado = true;
+                    response.Valor = "success";
+                    response.Mensaje = "Asistencia guardada correctamente.";
+                }
+                else
+                {
+                    response.Estado = false;
+                    response.Valor = "error";
+                    response.Mensaje = "No se pudo guardar la asistencia. Es posible que los datos estén corruptos.";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Valor = "error";
+                response.Mensaje = "Error en Base de Datos: " + ex.Message;
+            }
+
+            return response;
+        }
+
     }
 }

@@ -408,9 +408,11 @@
     <Content Include="MasterCarreras\jsSecre\ListaAsignacion.js" />
     <Content Include="MasterCarreras\jsSecre\Masterpa.js" />
     <Content Include="MasterCarreras\jsSecre\PanelMaterias.js" />
+    <Content Include="MasterCarreras\jsSecre\PanelPlanilla.js" />
     <Content Include="MasterCarreras\ListaAsignaciones.aspx" />
     <Content Include="MasterCarreras\PanelInicio.aspx" />
     <Content Include="MasterCarreras\PanelMaterias.aspx" />
+    <Content Include="MasterCarreras\PanelPlanilla.aspx" />
     <Content Include="PanelAsistenciaDiaria.aspx" />
     <Content Include="PanelCarreras.aspx" />
     <Content Include="PanelDocentes.aspx" />
@@ -475,6 +477,13 @@
     </Compile>
     <Compile Include="MasterCarreras\PanelMaterias.aspx.designer.cs">
       <DependentUpon>PanelMaterias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelPlanilla.aspx.cs">
+      <DependentUpon>PanelPlanilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelPlanilla.aspx.designer.cs">
+      <DependentUpon>PanelPlanilla.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelAsistenciaDiaria.aspx.cs">
       <DependentUpon>PanelAsistenciaDiaria.aspx</DependentUpon>

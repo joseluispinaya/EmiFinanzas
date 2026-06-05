@@ -60,6 +60,12 @@
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-end mb-2">
+                        <button type="button" id="btnLlenadoRapido" class="btn btn-sm btn-success shadow-sm font-weight-bold">
+                            <i class="fas fa-bolt mr-1"></i>Asistencia Perfecta (Feriados/Parciales)
+                        </button>
+                    </div>
+
                     <div class="table-responsive border rounded shadow-sm mb-4">
                         <table id="tbAsistencia" class="table table-sm table-striped table-bordered table-hover text-center align-middle w-100" style="min-width: 1000px;">
                             <thead class="thead-light">

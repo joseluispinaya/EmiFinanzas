@@ -4,6 +4,7 @@ using CapaEntidad.Entidades;
 using CapaEntidad.Responses;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,11 @@ namespace CapaNegocio
         public Respuesta<List<EstadoAsistencia>> ListaEstadoAsistencia()
         {
             return DAsistencia.GetInstance().ListaEstadoAsistencia();
+        }
+
+        public Respuesta<int> GuardarAsistenciaMasiva(DateTime fecha, int idUsuarioRegistro, DataTable dtDatos)
+        {
+            return DAsistencia.GetInstance().GuardarAsistenciaMasiva(fecha, idUsuarioRegistro, dtDatos);
         }
     }
 }

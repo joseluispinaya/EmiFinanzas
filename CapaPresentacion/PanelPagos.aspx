@@ -7,6 +7,16 @@
     <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <style>
+        .modal .modal-dialog .modal-content {
+            padding: 0 !important;
+            border-radius: 0.3rem !important; /* Mantiene los bordes suavemente redondeados */
+        }
+        /* Puedes cambiar el código hexadecimal por el color que prefieras */
+        /*.sweet-alert {
+            background-color: #093374 !important;
+        }*/
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulo" runat="server">
     Panel de Pagos Periodos
@@ -20,15 +30,21 @@
                     <h5 class="card-title m-0 text-white"><i class="fas fa-info-circle mr-2"></i>Pagos</h5>
                 </div>
                 <div class="card-body text-center d-flex flex-column">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <i class="fas fa-money-check-alt fa-3x text-muted mb-3 opacity-50"></i>
-                        <p class="text-muted text-justify" style="font-size: 0.9rem;">
+                        <p class="text-muted text-justify" style="font-size: 0.85rem;">
                             Este módulo administra los periodos de pagos para docentes, incluyendo la creación de nuevos periodos, asignación de pagos a docentes y gestión de estados de pago.
                         </p>
                     </div>
 
+                    <div class="form-group">
+                        <label for="cboGestionFiltro">Seleccione Gestion</label>
+                        <select class="form-control form-control-sm form-new" id="cboGestionFiltro">
+                        </select>
+                    </div>
+
                     <div class="mt-auto">
-                        <button type="button" id="btnRegistro" class="btn btn-emi-warning btn-block shadow-sm font-weight-bold">
+                        <button type="button" id="btnNewRegistro" class="btn btn-emi-warning btn-block shadow-sm font-weight-bold">
                             <i class="fas fa-plus-circle mr-2"></i>Nuevo Periodo
                         </button>
                     </div>
@@ -46,8 +62,7 @@
                         <table id="tbPeriodos" class="table table-sm table-striped table-bordered table-hover w-100">
                             <thead class="thead-light">
                                 <tr>
-                                    <th style="width: 50px;">Id</th>
-                                    <th class="text-center" style="width: 100px;">Gestion</th>
+                                    <th>Id</th>
                                     <th>Descripcion</th>
                                     <th class="text-center" style="width: 100px;">Inicio</th>
                                     <th class="text-center" style="width: 100px;">Fin</th>
@@ -64,14 +79,20 @@
 
     </div>
 
-    <div class="modal fade" id="mdData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title m-0" id="myModalLabel">Pagos</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal fade" id="mdData" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0 shadow-lg">
+
+                <div class="modal-header card-header-emi py-2 px-3">
+                    <h5 class="modal-title m-0 text-white"><i class="fas fa-calendar-alt mr-2"></i>
+                        <span id="lblTituloModal">Periodo Pagos</span>
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-body">
+
+                <div class="modal-body bg-light p-4">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -114,7 +135,7 @@
                                 <label for="cboEstado">Estado</label>
                                 <select class="form-control form-control-sm form-new" id="cboEstado">
                                     <option value="1">Activo</option>
-                                    <option value="0">No Activo</option>
+                                    <option value="0">Inactivo</option>
                                 </select>
                             </div>
                         </div>
@@ -125,10 +146,12 @@
                         <input type="text" class="form-control input-sm form-new" id="txtDescripcion" name="Descripcion">
                     </div>
                 </div>
-                <div class="modal-footer">
+
+                <div class="modal-footer bg-light">
                     <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal"><i class="fas fa-times-circle mr-2"></i>Cerrar</button>
                     <button id="btnGuardarCambios" type="button" class="btn btn-sm btn-primary"><i class="fas fa-save mr-2"></i>Guardar Cambios</button>
                 </div>
+
             </div>
         </div>
     </div>
