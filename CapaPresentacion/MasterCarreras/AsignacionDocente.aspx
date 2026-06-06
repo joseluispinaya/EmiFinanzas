@@ -179,6 +179,6 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="footer" runat="server">
     <script src="../assets/pluginzero/select2/select2.min.js"></script>
-<script src="../assets/pluginzero/select2/es.min.js"></script>
+    <script src="../assets/pluginzero/select2/es.min.js"></script>
     <script src="jsSecre/AsignacionDoc.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>
 </asp:Content>

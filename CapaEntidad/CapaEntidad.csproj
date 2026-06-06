@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DTOs\AsistenciaDiariaGuardarDTO.cs" />
     <Compile Include="DTOs\AsistenciaDiariaObtenerDTO.cs" />
+    <Compile Include="DTOs\ConsultasAsistenciaDTO.cs" />
     <Compile Include="DTOs\DetalleHorarioDTO.cs" />
     <Compile Include="DTOs\GuardarPlanillaRequestDTO.cs" />
     <Compile Include="DTOs\MateriasDTO.cs" />

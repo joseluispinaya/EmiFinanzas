@@ -405,11 +405,13 @@
     <Content Include="Login.aspx" />
     <Content Include="MasterCarreras\AsignacionDocente.aspx" />
     <Content Include="MasterCarreras\jsSecre\AsignacionDoc.js" />
+    <Content Include="MasterCarreras\jsSecre\ConsultaAsistencia.js" />
     <Content Include="MasterCarreras\jsSecre\ListaAsignacion.js" />
     <Content Include="MasterCarreras\jsSecre\Masterpa.js" />
     <Content Include="MasterCarreras\jsSecre\PanelMaterias.js" />
     <Content Include="MasterCarreras\jsSecre\PanelPlanilla.js" />
     <Content Include="MasterCarreras\ListaAsignaciones.aspx" />
+    <Content Include="MasterCarreras\PanelConsultaAsistencia.aspx" />
     <Content Include="MasterCarreras\PanelInicio.aspx" />
     <Content Include="MasterCarreras\PanelMaterias.aspx" />
     <Content Include="MasterCarreras\PanelPlanilla.aspx" />
@@ -463,6 +465,13 @@
     </Compile>
     <Compile Include="MasterCarreras\ListaAsignaciones.aspx.designer.cs">
       <DependentUpon>ListaAsignaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelConsultaAsistencia.aspx.cs">
+      <DependentUpon>PanelConsultaAsistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelConsultaAsistencia.aspx.designer.cs">
+      <DependentUpon>PanelConsultaAsistencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterCarreras\PanelInicio.aspx.cs">
       <DependentUpon>PanelInicio.aspx</DependentUpon>

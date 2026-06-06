@@ -140,6 +140,14 @@
                                 </ul>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-database-search"></i><span> Consultas </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="PanelConsultaAsistencia.aspx">Asistencias</a></li>
+                                    <li><a href="javascript:void(0)">Solicitudes</a></li>
+                                    <li><a href="javascript:void(0)">Consultas</a></li>
+                                </ul>
+                            </li>
                             
                         </ul>
                     </div>

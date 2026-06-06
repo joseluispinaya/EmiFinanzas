@@ -339,58 +339,27 @@ $("#btnLlenadoRapido").on("click", function () {
             let horaEntrada = fila.attr("data-entrada");
             let horaSalida = fila.attr("data-salida");
 
+            // 1. Cambiamos el combo a Presente (1) y le damos color verde de éxito
+            fila.find(".cbo-estado").val("1").removeClass("text-danger text-warning").addClass("text-success");
+
             // Asignamos los valores a los inputs de esta fila
-            fila.find(".cbo-estado").val("1"); // 1 = Presente
-            fila.find(".inp-ingreso").val(horaEntrada);
-            fila.find(".inp-salida").val(horaSalida);
-            fila.find(".inp-atraso").val("0");
+            //fila.find(".cbo-estado").val("1");
+
+            // 2. Asignamos horas y BLOQUEAMOS (readonly + color de fondo gris claro)
+            fila.find(".inp-ingreso").val(horaEntrada).prop("readonly", true).addClass("bg-light");
+            fila.find(".inp-salida").val(horaSalida).prop("readonly", true).addClass("bg-light");
+            //fila.find(".inp-ingreso").val(horaEntrada);
+            //fila.find(".inp-salida").val(horaSalida);
+
+            // 3. Atraso en 0 y texto verde
+            fila.find(".inp-atraso").val("0").removeClass("text-danger").addClass("text-success");
+            //fila.find(".inp-atraso").val("0");
         });
 
-        MostrarToastZer("Autocompletado exitoso.", "¡Listo!", "success");
+        MostrarToastZer("Autocompletado exitoso. Registros protegidos.", "¡Listo!", "success");
     });
 });
 
-// FUNCIÓN AUXILIAR: Convierte "HH:mm" a minutos totales
-function convertirAMinutos(horaString) {
-    if (!horaString) return 0;
-    let partes = horaString.split(':');
-    return parseInt(partes[0], 10) * 60 + parseInt(partes[1], 10);
-}
-
-// EVENTO: CÁLCULO AUTOMÁTICO AL CAMBIAR LA HORA DE INGRESO
-$("#tbAsistencia tbody").on("change", ".inp-ingreso", function () {
-
-    let inputIngreso = $(this);
-    let fila = inputIngreso.closest("tr");
-
-    // Obtenemos la hora oficial y la que acaba de ingresar la secretaria
-    let horaOficialString = fila.attr("data-entrada");
-    let horaMarcadaString = inputIngreso.val();
-
-    // Validamos que ambas existan
-    if (horaOficialString && horaMarcadaString) {
-
-        let minOficial = convertirAMinutos(horaOficialString);
-        let minMarcado = convertirAMinutos(horaMarcadaString);
-
-        let minutosAtraso = minMarcado - minOficial;
-
-        // Si llegó temprano o a tiempo, el atraso es 0
-        if (minutosAtraso < 0) {
-            minutosAtraso = 0;
-        }
-
-        // Asignamos el valor al input de atraso
-        fila.find(".inp-atraso").val(minutosAtraso);
-
-        // Opcional: Cambiamos visualmente el color si hay atraso para llamar la atención
-        if (minutosAtraso > 0) {
-            fila.find(".inp-atraso").removeClass("text-danger text-success").addClass("text-danger");
-        } else {
-            fila.find(".inp-atraso").removeClass("text-danger text-success").addClass("text-success");
-        }
-    }
-});
 
 // FUNCIÓN AUXILIAR: Convierte "HH:mm" a minutos totales (Entero)
 function convertirAMinutos(horaString) {
@@ -449,6 +418,75 @@ $("#tbAsistencia tbody").on("change", ".inp-ingreso, .inp-salida", function () {
         inpAtraso.removeClass("text-success").addClass("text-danger");
     } else {
         inpAtraso.removeClass("text-danger").addClass("text-success");
+    }
+});
+
+// =====================================================================
+// EVENTO: CONTROL AUTOMÁTICO AL CAMBIAR EL ESTADO (PRESENTE / FALTA)
+// =====================================================================
+$("#tbAsistencia tbody").on("change", ".cbo-estado", function () {
+    let combo = $(this);
+    let fila = combo.closest("tr");
+    let idEstado = parseInt(combo.val());
+
+    // Referencias a los inputs de la fila
+    let inpIngreso = fila.find(".inp-ingreso");
+    let inpSalida = fila.find(".inp-salida");
+    let inpAtraso = fila.find(".inp-atraso");
+
+    // Horas oficiales ocultas en el tr
+    let horaEntradaOficial = fila.attr("data-entrada");
+    let horaSalidaOficial = fila.attr("data-salida");
+
+    // 1. Cambiamos el color del texto del Select para dar feedback visual
+    combo.removeClass("text-success text-danger text-warning");
+    if (idEstado === 1) combo.addClass("text-success");
+    else if (idEstado === 2) combo.addClass("text-danger");
+    else combo.addClass("text-warning");
+
+    // 2. Lógica según el Estado
+    if (idEstado === 2) {
+        // ==========================================
+        // CASO: FALTA (Descuento total de la clase)
+        // ==========================================
+        // Limpiamos y bloqueamos las horas porque no asistió
+        inpIngreso.val("").prop("readonly", true).addClass("bg-light");
+        inpSalida.val("").prop("readonly", true).addClass("bg-light");
+
+        // Calculamos los minutos totales que dura esta clase
+        let minEntrada = convertirAMinutos(horaEntradaOficial);
+        let minSalida = convertirAMinutos(horaSalidaOficial);
+        let minutosClaseCompleta = minSalida - minEntrada;
+
+        // Asignamos la penalización total al input de atraso
+        inpAtraso.val(minutosClaseCompleta).removeClass("text-success").addClass("text-danger");
+
+    } else if (idEstado === 1) {
+        // ==========================================
+        // CASO: PRESENTE
+        // ==========================================
+        // Desbloqueamos los inputs
+        inpIngreso.prop("readonly", false).removeClass("bg-light");
+        inpSalida.prop("readonly", false).removeClass("bg-light");
+
+        // Si los inputs estaban vacíos (por ejemplo, si regresó de una Falta), 
+        // le ponemos su hora oficial por defecto.
+        if (inpIngreso.val() === "") inpIngreso.val(horaEntradaOficial);
+        if (inpSalida.val() === "") inpSalida.val(horaSalidaOficial);
+
+        // Disparamos el evento 'change' de las horas para que el sistema 
+        // recalcule automáticamente si hay atrasos reales
+        inpIngreso.trigger("change");
+
+    } else {
+        // ==========================================
+        // CASO: PERMISO / FERIADO (No hay descuento)
+        // ==========================================
+        // Bloqueamos las horas y ponemos el atraso en 0
+        inpIngreso.val("").prop("readonly", true).addClass("bg-light");
+        inpSalida.val("").prop("readonly", true).addClass("bg-light");
+
+        inpAtraso.val(0).removeClass("text-danger").addClass("text-success");
     }
 });
 

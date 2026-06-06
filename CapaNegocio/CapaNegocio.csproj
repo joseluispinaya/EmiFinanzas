@@ -44,6 +44,7 @@
     <Compile Include="NAsignacionDocen.cs" />
     <Compile Include="NAsistencia.cs" />
     <Compile Include="NCarrera.cs" />
+    <Compile Include="NConsultaAsistencia.cs" />
     <Compile Include="NDocente.cs" />
     <Compile Include="NGradoAcademico.cs" />
     <Compile Include="NMaterias.cs" />
