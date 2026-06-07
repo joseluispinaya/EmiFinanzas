@@ -541,10 +541,17 @@ function generarReporteAsistenciaPDF(materiaTexto, listaAsistencia) {
 
     // Firma 2 (Derecha) - Jefe de Carrera / RRHH
     doc.line(pageWidth - 110, firmaY, pageWidth - 40, firmaY);
+
     doc.setFont("helvetica", "bold");
-    doc.text("JEFE DE CARRERA / RECURSOS HUMANOS", pageWidth - 75, firmaY + 5, { align: "center" });
+    let nombreImprime = `${usuarioGlobal.Nombres} ${usuarioGlobal.Apellidos}`.toUpperCase();
+    doc.text(nombreImprime, pageWidth - 75, firmaY + 5, { align: "center" });
+
+    /*doc.text("JEFE DE CARRERA / RECURSOS HUMANOS", pageWidth - 75, firmaY + 5, { align: "center" });*/
     doc.setFont("helvetica", "normal");
-    doc.text("Sello y Firma", pageWidth - 75, firmaY + 10, { align: "center" });
+    let cargoImprime = `${usuarioGlobal.NombreRol} ${usuarioGlobal.NombreCarrera}`.toUpperCase();
+    doc.text(cargoImprime, pageWidth - 75, firmaY + 10, { align: "center" });
+
+    /*doc.text("Sello y Firma", pageWidth - 75, firmaY + 10, { align: "center" });*/
 
     // ==========================================
     // 5. GUARDAR PDF

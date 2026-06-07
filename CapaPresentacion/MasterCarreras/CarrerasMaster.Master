@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EMI Pago</title>
+    <title>EMI Sistema de Honorarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="Sistema de Test Vocacional" name="description" />
     <meta content="ThemeDesign" name="author" />
@@ -14,8 +14,6 @@
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
     <link href="../assets/plugins/bootstrap-sweetalert/sweet-alert.css" rel="stylesheet" type="text/css"/>
     <link href="../assets/pluginzero/toastr/toastr.min.css" rel="stylesheet" />
-    <!-- DataTables -->
-    <!-- <link href="assets/pluginzero/select2/select2.min.css" rel="stylesheet" /> -->
 
     
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -23,7 +21,6 @@
     <link href="../assets/css/icons.css" rel="stylesheet" type="text/css"/>
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="../assets/css/estilomejorado.css" rel="stylesheet" type="text/css">
-    <!-- <link href="assets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/> -->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -52,10 +49,6 @@
                                 </button>
                             </li>
                             <li class="hide-phone app-search float-left">
-                                <!-- <div role="search" class="navbar-form">
-                                    <input type="text" placeholder="Buscar..." class="form-control search-bar">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div> -->
                             </li>
                         </ul>
 
@@ -76,7 +69,6 @@
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-divider"></li>
                                     <li><a href="javascript:void(0)" id="btnCerrarSesion" class="dropdown-item"> Salir</a></li>
-                                    <!-- <li><a id="close" class="dropdown-item" style="cursor: pointer;">Salir</a></li> -->
                                 </ul>
                             </li>
                         </ul>
@@ -106,7 +98,12 @@
                                 </ul>
                             </div>
 
-                            <p class="text-muted m-0"><i class="far fa-dot-circle text-primary"></i> En Linea</p>
+                            <p class="text-muted m-0">
+                                <i class="fas fa-graduation-cap text-primary mr-1"></i>
+                                <span id="textCarrera">Cargando...</span>
+                            </p>
+
+                            <%--<p class="text-muted m-0"><i class="far fa-dot-circle text-primary"></i> En Linea</p>--%>
                         </div>
                     </div>
                     <!--- Divider -->
@@ -119,32 +116,41 @@
                                 <a href="PanelInicio.aspx" class="waves-effect"><i class="mdi mdi-home"></i><span>Inicio <span class="badge badge-primary float-right">1</span></span></a>
                             </li>
 
-                            <li>
+                            <li class="d-none menu-secre">
                                 <a href="PanelMaterias.aspx" class="waves-effect"><i class="mdi mdi-calendar"></i><span>Materias</span></a>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-table"></i><span>Asignacion </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
+                            <li class="has_sub d-none menu-secre">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-table"></i><span>Asignaciones </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="AsignacionDocente.aspx">Docente Materia</a></li>
                                     <li><a href="ListaAsignaciones.aspx">Lista Asignacion</a></li>
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-square-inc-cash"></i><span> Planilla Pago </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
+                            <li class="has_sub d-none menu-secre">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-square-inc-cash"></i><span> Pago Planilla </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="PanelPlanilla.aspx">Honorarios</a></li>
-                                    <li><a href="javascript:void(0)">Solicitudes</a></li>
+                                    <li><a href="PanelNotificaciones.aspx">Notificaciones</a></li>
                                     <li><a href="javascript:void(0)">Consultas</a></li>
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
+                            <li class="has_sub d-none menu-secre">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-database-search"></i><span> Consultas </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="PanelConsultaAsistencia.aspx">Asistencias</a></li>
-                                    <li><a href="javascript:void(0)">Solicitudes</a></li>
+                                    <li><a href="javascript:void(0)">Plantel Docente</a></li>
+                                    <li><a href="javascript:void(0)">Consultas</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub d-none menu-jefe">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-bar-stacked"></i><span> Estadisticas </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="javascript:void(0)">Informe General</a></li>
+                                    <li><a href="javascript:void(0)">Solicitudes Planilla</a></li>
                                     <li><a href="javascript:void(0)">Consultas</a></li>
                                 </ul>
                             </li>
@@ -207,10 +213,6 @@
         <script src="../assets/plugins/bootstrap-sweetalert/sweet-alert.min.js"></script>
         <script src="../assets/plugins/loadingoverlay/loadingoverlay.js"></script>
 
-        <!-- <script src="assets/pluginzero/select2/select2.min.js"></script> -->
-
-        <!-- Datatable init js -->
-        <!-- <script src="assets/jquery-ui-1.12.1/jquery-ui.js"></script> -->
 
         <script src="../assets/js/app.js"></script>
         <script src="jsSecre/Masterpa.js?v=<%= DateTime.Now.ToString("yyyyMMddHHmmss") %>" type="text/javascript"></script>

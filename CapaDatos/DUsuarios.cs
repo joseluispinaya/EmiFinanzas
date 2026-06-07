@@ -125,6 +125,7 @@ namespace CapaDatos
                                     IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
                                     IdRol = Convert.ToInt32(dr["IdRol"]),
                                     IdCarrera = Convert.ToInt32(dr["IdCarrera"]),
+                                    NombreCarrera = dr["NombreCarrera"].ToString(),
                                     Nombres = dr["Nombres"].ToString(),
                                     Apellidos = dr["Apellidos"].ToString(),
                                     Correo = dr["Correo"].ToString(),

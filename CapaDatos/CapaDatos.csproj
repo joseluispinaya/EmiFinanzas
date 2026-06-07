@@ -50,6 +50,7 @@
     <Compile Include="DGradoAcademico.cs" />
     <Compile Include="DMaterias.cs" />
     <Compile Include="DPagosPlanilla.cs" />
+    <Compile Include="DPlanillaAprobacion.cs" />
     <Compile Include="DUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

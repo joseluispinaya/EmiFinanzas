@@ -1,4 +1,7 @@
 ﻿
+// VARIABLE GLOBAL DEL USUARIO (Disponible para páginas hijas)
+let usuarioGlobal = null;
+
 $(document).ready(function () {
 
     const usuarioLog = sessionStorage.getItem('usuaEmi');
@@ -11,11 +14,34 @@ $(document).ready(function () {
     try {
         const usua = JSON.parse(usuarioLog);
 
+        // Asignamos el valor a la variable global
+        usuarioGlobal = usua;
+
+        // 1. Cargar datos del Perfil
         $("#imgUsuarioMe").attr("src", usua.FotoUrl || "/images/sinImagen.png");
         $("#imageUserMe").attr("src", usua.FotoUrl || "/images/sinImagen.png");
         $("#nombreusuariome").text(usua.Apellidos);
         $("#rolusuariome").text(usua.NombreRol);
         $("#rolnomme").text(usua.Nombres);
+
+        // Inyectamos el nombre de la carrera en el span
+        $("#textCarrera").text(usua.NombreCarrera);
+
+        // =========================================================
+        // 2. LÓGICA DE AUTORIZACIÓN VISUAL DE MENÚS
+        // =========================================================
+        if (usua.IdRol === 2) {
+            // Es Secretaria: Mostramos solo sus menús
+            $(".menu-secre").removeClass("d-none");
+
+        } else if (usua.IdRol === 3) {
+            // Es Jefe de Carrera: Mostramos solo sus menús
+            $(".menu-jefe").removeClass("d-none");
+
+            // Nota: Si el Jefe también necesita ver los menús de la secretaria 
+            // (como asignar horarios), simplemente descomenta la línea de abajo:
+            // $(".menu-secre").removeClass("d-none");
+        }
 
     } catch (error) {
         console.error("Error leyendo sesión", error);

@@ -48,6 +48,7 @@
     <Compile Include="DTOs\GuardarPlanillaRequestDTO.cs" />
     <Compile Include="DTOs\MateriasDTO.cs" />
     <Compile Include="DTOs\ObtenerAsigDocDTO.cs" />
+    <Compile Include="DTOs\PlanillaAprobacionDTO.cs" />
     <Compile Include="DTOs\PlanillaDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Entidades\AsistenciaDiario.cs" />

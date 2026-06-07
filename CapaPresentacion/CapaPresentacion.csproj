@@ -404,16 +404,20 @@
     <Content Include="js\UsuariosPage.js" />
     <Content Include="Login.aspx" />
     <Content Include="MasterCarreras\AsignacionDocente.aspx" />
+    <Content Include="MasterCarreras\DetallePlanilla.aspx" />
     <Content Include="MasterCarreras\jsSecre\AsignacionDoc.js" />
     <Content Include="MasterCarreras\jsSecre\ConsultaAsistencia.js" />
+    <Content Include="MasterCarreras\jsSecre\DetallePlanilla.js" />
     <Content Include="MasterCarreras\jsSecre\ListaAsignacion.js" />
     <Content Include="MasterCarreras\jsSecre\Masterpa.js" />
     <Content Include="MasterCarreras\jsSecre\PanelMaterias.js" />
+    <Content Include="MasterCarreras\jsSecre\PanelNotificaciones.js" />
     <Content Include="MasterCarreras\jsSecre\PanelPlanilla.js" />
     <Content Include="MasterCarreras\ListaAsignaciones.aspx" />
     <Content Include="MasterCarreras\PanelConsultaAsistencia.aspx" />
     <Content Include="MasterCarreras\PanelInicio.aspx" />
     <Content Include="MasterCarreras\PanelMaterias.aspx" />
+    <Content Include="MasterCarreras\PanelNotificaciones.aspx" />
     <Content Include="MasterCarreras\PanelPlanilla.aspx" />
     <Content Include="PanelAsistenciaDiaria.aspx" />
     <Content Include="PanelCarreras.aspx" />
@@ -459,6 +463,13 @@
     <Compile Include="MasterCarreras\CarrerasMaster.Master.designer.cs">
       <DependentUpon>CarrerasMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterCarreras\DetallePlanilla.aspx.cs">
+      <DependentUpon>DetallePlanilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\DetallePlanilla.aspx.designer.cs">
+      <DependentUpon>DetallePlanilla.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterCarreras\ListaAsignaciones.aspx.cs">
       <DependentUpon>ListaAsignaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -486,6 +497,13 @@
     </Compile>
     <Compile Include="MasterCarreras\PanelMaterias.aspx.designer.cs">
       <DependentUpon>PanelMaterias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelNotificaciones.aspx.cs">
+      <DependentUpon>PanelNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\PanelNotificaciones.aspx.designer.cs">
+      <DependentUpon>PanelNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterCarreras\PanelPlanilla.aspx.cs">
       <DependentUpon>PanelPlanilla.aspx</DependentUpon>

@@ -49,6 +49,7 @@
     <Compile Include="NGradoAcademico.cs" />
     <Compile Include="NMaterias.cs" />
     <Compile Include="NPagosPlanilla.cs" />
+    <Compile Include="NPlanillaAprobacion.cs" />
     <Compile Include="NUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

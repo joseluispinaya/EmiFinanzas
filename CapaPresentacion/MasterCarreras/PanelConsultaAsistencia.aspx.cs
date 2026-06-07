@@ -16,7 +16,16 @@ namespace CapaPresentacion.MasterCarreras
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (Session["UsuarioLogueado"] != null)
+            //{
+            //    EUsuarios usuario = (EUsuarios)Session["UsuarioLogueado"];
 
+            //    if (usuario.IdRol != 3)
+            //    {
+            //        Response.Redirect("PanelInicio.aspx");
+            //        return;
+            //    }
+            //}
         }
 
         [WebMethod(EnableSession = true)]
