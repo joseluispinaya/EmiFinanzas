@@ -22,6 +22,7 @@
         public string EstadoPlanilla { get; set; }
         public int IdEstadoPlanilla { get; set; }
         public string UsuarioRegistro { get; set; }
+        public string ComentarioAuditoria { get; set; } // ¡Nueva propiedad!
     }
 
     // 3. DTO para la tabla de Detalles Congelados

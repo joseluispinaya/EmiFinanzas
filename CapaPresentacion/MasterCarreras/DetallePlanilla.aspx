@@ -51,7 +51,7 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
                     <label class="small text-muted font-weight-bold mb-1"><i class="fas fa-calendar-alt mr-1"></i>Gestión Académica</label>
                     <h6 class="font-weight-bold text-dark m-0" id="lblGestion">Cargando...</h6>
@@ -71,6 +71,17 @@
                     <span id="badgeEstado" class="badge badge-secondary shadow-sm px-3 py-2" style="font-size: 0.9rem;">Cargando...</span>
                 </div>
             </div>
+
+            <div id="alertaObservacion" class="alert shadow-sm mb-4" style="display: none; border-left: 5px solid transparent;">
+                <h6 class="font-weight-bold mb-1" id="lblTituloAlerta">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>Atención
+                </h6>
+                <p class="m-0 small text-dark">
+                    <strong>Comentario de Auditoría: </strong>
+                    <span id="lblMotivoAuditoria">Cargando...</span>
+                </p>
+            </div>
+
         </div>
     </div>
 

@@ -206,5 +206,119 @@ namespace CapaDatos
             return response;
         }
 
+        // ACTUALIZAR ASISTENCIA INDIVIDUAL (Encargado de Sistemas)
+        public Respuesta<int> ActualizarAsistenciaIndividual(int idAsistencia, int idEstado, string horaIngreso, string horaSalida, int minutosAtraso)
+        {
+            try
+            {
+                int resultado = 0;
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ActualizarAsistenciaIndividual", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@IdAsistenciaDiaria", idAsistencia);
+                        cmd.Parameters.AddWithValue("@IdEstado", idEstado);
+
+                        // Manejo estricto de nulos para las columnas TIME(0)
+                        if (string.IsNullOrWhiteSpace(horaIngreso))
+                        {
+                            cmd.Parameters.AddWithValue("@HoraIngreso", DBNull.Value);
+                        }
+                        else
+                        {
+                            // SQL Server convierte automáticamente "HH:mm" a TIME
+                            cmd.Parameters.AddWithValue("@HoraIngreso", horaIngreso);
+                        }
+
+                        if (string.IsNullOrWhiteSpace(horaSalida))
+                        {
+                            cmd.Parameters.AddWithValue("@HoraSalida", DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@HoraSalida", horaSalida);
+                        }
+
+                        cmd.Parameters.AddWithValue("@MinutosAtraso", minutosAtraso);
+
+                        con.Open();
+
+                        // Leemos el SELECT 1 AS Resultado del SP
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                resultado = Convert.ToInt32(dr["Resultado"]);
+                            }
+                        }
+                    }
+                }
+
+                if (resultado == 1)
+                {
+                    return new Respuesta<int> { Estado = true, Valor = "success", Mensaje = "El registro de asistencia fue actualizado correctamente." };
+                }
+                else
+                {
+                    return new Respuesta<int> { Estado = false, Valor = "error", Mensaje = "No se pudo actualizar el registro en la base de datos." };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<int> { Estado = false, Valor = "error", Mensaje = "Error BD: " + ex.Message };
+            }
+        }
+
+        public Respuesta<int> ActualizarAsistenciaIndividualNew(int idAsistencia, int idEstado, TimeSpan? horaIngreso, TimeSpan? horaSalida, int minutosAtraso)
+        {
+            try
+            {
+                int resultado = 0;
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ActualizarAsistenciaIndividual", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@IdAsistenciaDiaria", idAsistencia);
+                        cmd.Parameters.AddWithValue("@IdEstado", idEstado);
+
+                        // Magia del Nullable: Operador ternario para asignar la hora o el DBNull
+                        cmd.Parameters.AddWithValue("@HoraIngreso", horaIngreso.HasValue ? (object)horaIngreso.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@HoraSalida", horaSalida.HasValue ? (object)horaSalida.Value : DBNull.Value);
+
+                        cmd.Parameters.AddWithValue("@MinutosAtraso", minutosAtraso);
+
+                        con.Open();
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                resultado = Convert.ToInt32(dr["Resultado"]);
+                            }
+                        }
+                    }
+                }
+
+                if (resultado == 1)
+                {
+                    return new Respuesta<int> { Estado = true, Valor = "success", Mensaje = "El registro de asistencia fue actualizado correctamente." };
+                }
+                else
+                {
+                    return new Respuesta<int> { Estado = false, Valor = "error", Mensaje = "No se pudo actualizar el registro en la base de datos." };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<int> { Estado = false, Valor = "error", Mensaje = "Error BD: " + ex.Message };
+            }
+        }
+
     }
 }

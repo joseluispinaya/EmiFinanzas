@@ -40,5 +40,15 @@ namespace CapaNegocio
         {
             return DAsistencia.GetInstance().GuardarAsistenciaMasiva(fecha, idUsuarioRegistro, dtDatos);
         }
+
+        public Respuesta<int> ActualizarAsistenciaIndividual(int idAsistencia, int idEstado, string horaIngreso, string horaSalida, int minutosAtraso)
+        {
+            return DAsistencia.GetInstance().ActualizarAsistenciaIndividual(idAsistencia, idEstado, horaIngreso, horaSalida, minutosAtraso);
+        }
+
+        public Respuesta<int> ActualizarAsistenciaIndividualNew(int idAsistencia, int idEstado, TimeSpan? horaIngreso, TimeSpan? horaSalida, int minutosAtraso)
+        {
+            return DAsistencia.GetInstance().ActualizarAsistenciaIndividualNew(idAsistencia, idEstado, horaIngreso, horaSalida, minutosAtraso);
+        }
     }
 }

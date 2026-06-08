@@ -94,7 +94,8 @@ namespace CapaDatos
                                     FechaCreacion = dr["FechaCreacion"].ToString(),
                                     EstadoPlanilla = dr["EstadoPlanilla"].ToString(),
                                     IdEstadoPlanilla = Convert.ToInt32(dr["IdEstadoPlanilla"]),
-                                    UsuarioRegistro = dr["UsuarioRegistro"].ToString()
+                                    UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
+                                    ComentarioAuditoria = dr["ComentarioAuditoria"].ToString()
                                 };
                             }
                         }

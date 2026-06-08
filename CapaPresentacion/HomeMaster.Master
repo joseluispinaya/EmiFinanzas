@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EMI Pago</title>
+    <title>EMI Sistema de Honorarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content="Sistema de Test Vocacional" name="description" />
     <meta content="ThemeDesign" name="author" />
@@ -129,7 +129,7 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-memory"></i><span>Configuracion </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="PanelGestion.aspx">Gestiones</a></li>
+                                    <li><a href="#">Gestiones</a></li>
                                     <li><a href="PanelPagos.aspx">Pagos periodo</a></li>
                                 </ul>
                             </li>
@@ -145,8 +145,8 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-alarm-plus"></i><span> Biometrico </span><span class="float-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="PanelBiometrico.aspx">Asignacion</a></li>
                                     <li><a href="PanelAsistenciaDiaria.aspx">Asistencia Diaria</a></li>
+                                    <li><a href="ConsultaAsistencias.aspx">Consultas</a></li>
                                 </ul>
                             </li>
 

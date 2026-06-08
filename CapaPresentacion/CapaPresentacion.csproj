@@ -388,12 +388,14 @@
     <Content Include="assets\pluginzero\sweetalert\sweetalert.js" />
     <Content Include="assets\pluginzero\toastr\toastr.min.css" />
     <Content Include="assets\pluginzero\toastr\toastr.min.js" />
+    <Content Include="ConsultaAsistencias.aspx" />
     <Content Include="Imagenes\appmucha.png" />
     <Content Include="images\adminemi.png" />
     <Content Include="images\emiss.png" />
     <Content Include="images\sinFoto.png" />
     <Content Include="images\sinImagen.png" />
     <Content Include="Inicio.aspx" />
+    <Content Include="js\ConsultaAsistencias.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\Masterpa.js" />
     <Content Include="js\PanelAsistenciaDiaria.js" />
@@ -428,6 +430,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsultaAsistencias.aspx.cs">
+      <DependentUpon>ConsultaAsistencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaAsistencias.aspx.designer.cs">
+      <DependentUpon>ConsultaAsistencias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HomeMaster.Master.cs">
       <DependentUpon>HomeMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
