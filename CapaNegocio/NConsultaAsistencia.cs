@@ -42,5 +42,20 @@ namespace CapaNegocio
             return DConsultaAsistencia.GetInstance().ObtenerAsistenciaDetalle(idDocente, idCarrera, idGestion, idPeriodo);
         }
 
+        public Respuesta<List<HorarioAgrupadoDTO>> ObtenerHorariosAgrupados(int idDocente, int idCarrera, int idGestion)
+        {
+            return DConsultaAsistencia.GetInstance().ObtenerHorariosAgrupados(idDocente, idCarrera, idGestion);
+        }
+
+        public Respuesta<List<AsistenciaDetalleAsignacionDTO>> ObtenerAsistenciaDetallePorAsignacion(int idAsignacion, int idPeriodo)
+        {
+            return DConsultaAsistencia.GetInstance().ObtenerAsistenciaDetallePorAsignacion(idAsignacion, idPeriodo);
+        }
+
+        public Respuesta<List<PlanillaDetalleAsignacionDTO>> ObtenerPlanillaDetallePorAsignacion(int idAsignacion)
+        {
+            return DConsultaAsistencia.GetInstance().ObtenerPlanillaDetallePorAsignacion(idAsignacion);
+        }
+
     }
 }

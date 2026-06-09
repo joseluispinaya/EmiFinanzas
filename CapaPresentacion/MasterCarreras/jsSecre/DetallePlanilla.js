@@ -226,7 +226,7 @@ function cargarDetallePlanilla() {
                 "className": "text-right align-middle text-success text-nowrap",
                 render: function (data) { return 'Bs. ' + parseFloat(data).toFixed(2); }
             },
-            { "data": "TotalDescuentos", "className": "align-middle text-center text-danger", render: $.fn.dataTable.render.number(',', '.', 2, '-Bs. ') },
+            { "data": "TotalDescuentos", "className": "align-middle text-danger", render: $.fn.dataTable.render.number(',', '.', 2, '-Bs. ') },
             { "data": "TotalAPagar", "className": "align-middle text-center text-primary text-nowrap font-weight-bold", render: $.fn.dataTable.render.number(',', '.', 2, 'Bs. ') }
         ],
         "order": [],

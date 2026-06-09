@@ -142,10 +142,23 @@ function listaPlanillas(idGestion) {
                 "searchable": false,
                 "className": "align-middle text-nowrap",
                 render: function (data, type, row) {
+
+                    let btnEditar = "";
+
+                    // LÓGICA DE SEGURIDAD VISUAL:
+                    // Solo si el usuario logueado es Secretaria (Rol 2) 
+                    // Y la planilla actual tiene estado Rechazado (Estado 3)
+                    if (usuarioGlobal.IdRol === 2 && row.IdEstadoPlanilla === 3) {
+                        btnEditar = `
+                            <button class="btn btn-outline-secondary btn-editar btn-sm shadow-sm mr-1" title="Editar Planilla" data-id="${row.IdPlanilla}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        `;
+                    }
+
+                    // El botón de "Revisar Detalle" siempre se muestra para todos los roles
                     return `
-                        <button class="btn btn-outline-secondary btn-editar btn-sm shadow-sm mr-1" title="Editar Planilla" data-id="${row.IdPlanilla}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </button>
+                        ${btnEditar}
                         <button class="btn btn-primary btn-detalle btn-sm shadow-sm font-weight-bold" title="Revisar Detalle" data-id="${row.IdPlanilla}">
                             <i class="fas fa-money-check-alt mr-1"></i> Revisar
                         </button>
@@ -180,6 +193,24 @@ $('#tbData tbody').on('click', '.btn-detalle', function () {
 
     // Redirigimos a la nueva página enviando el ID por la URL
     window.location.href = `DetallePlanilla.aspx?id=${idPlanilla}`;
+});
+
+// EVENTO: CLIC EN BOTÓN MODIFICAR PLANILLA
+$('#tbData tbody').on('click', '.btn-editar', function () {
+
+    let fila = $(this).closest('tr');
+
+    // Validación magistral para el modo Responsive de DataTables
+    if (fila.hasClass('child')) {
+        fila = fila.prev();
+    }
+
+    let data = tablaData.row(fila).data();
+    let idPlanilla = data.IdPlanilla;
+
+
+    // Redirigimos a la nueva página enviando el ID por la URL
+    window.location.href = `RecalcularPlanilla.aspx?id=${idPlanilla}`;
 });
 
 // fin

@@ -46,5 +46,15 @@ namespace CapaNegocio
             return DPagosPlanilla.GetInstance().GuardarPlanillaCompleta(idCarrera, idGestion, idPeriodo, semanasMes, idUsuarioRegistro, dtDetalles);
         }
 
+        public Respuesta<PlanillaCabeceraRecalcularDTO> DetallePlanillaCabeceraPorId(int idPlanilla)
+        {
+            return DPagosPlanilla.GetInstance().DetallePlanillaCabeceraPorId(idPlanilla);
+        }
+
+        public Respuesta<int> RecalcularPlanilla(int idPlanilla, int semanasMes, int idUsuarioRegistro, DataTable dtDetalles)
+        {
+            return DPagosPlanilla.GetInstance().RecalcularPlanilla(idPlanilla, semanasMes, idUsuarioRegistro, dtDetalles);
+        }
+
     }
 }

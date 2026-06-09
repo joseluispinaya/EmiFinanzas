@@ -21,7 +21,7 @@
                     </h6>
                 </div>
                 <div class="card-body bg-light d-flex flex-column">
-                    <div class="text-center mb-4 mt-2">
+                    <div class="text-center mb-2 mt-2">
                         <div class="icon-circle bg-white shadow-sm mx-auto mb-3" style="width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i class="fas fa-money-check-alt fa-2x text-primary opacity-75"></i>
                         </div>

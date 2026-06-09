@@ -290,5 +290,126 @@ namespace CapaDatos
             return response;
         }
 
+        // 2. OBTENER CABECERA DE LA PLANILLA (Página de recalcular)
+        public Respuesta<PlanillaCabeceraRecalcularDTO> DetallePlanillaCabeceraPorId(int idPlanilla)
+        {
+            try
+            {
+                PlanillaCabeceraRecalcularDTO cabecera = null;
+
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_PlanillaCabeceraPorIdRecalcular", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdPlanilla", idPlanilla);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                cabecera = new PlanillaCabeceraRecalcularDTO
+                                {
+                                    IdPlanilla = Convert.ToInt32(dr["IdPlanilla"]),
+                                    IdGestion = Convert.ToInt32(dr["IdGestion"]),
+                                    IdPeriodo = Convert.ToInt32(dr["IdPeriodo"]),
+                                    NombreGestion = dr["NombreGestion"].ToString(),
+                                    PeriodoPago = dr["PeriodoPago"].ToString(),
+                                    SemanasMes = Convert.ToInt32(dr["SemanasMes"]),
+                                    FechaCreacion = dr["FechaCreacion"].ToString(),
+                                    EstadoPlanilla = dr["EstadoPlanilla"].ToString(),
+                                    IdEstadoPlanilla = Convert.ToInt32(dr["IdEstadoPlanilla"]),
+                                    UsuarioRegistro = dr["UsuarioRegistro"].ToString(),
+                                    ComentarioAuditoria = dr["ComentarioAuditoria"].ToString()
+                                };
+                            }
+                        }
+                    }
+                }
+
+                if (cabecera != null)
+                    return new Respuesta<PlanillaCabeceraRecalcularDTO> { Estado = true, Data = cabecera };
+                else
+                    return new Respuesta<PlanillaCabeceraRecalcularDTO> { Estado = false, Mensaje = "No se encontró la planilla." };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<PlanillaCabeceraRecalcularDTO> { Estado = false, Mensaje = "Error BD: " + ex.Message };
+            }
+        }
+
+        public Respuesta<int> RecalcularPlanilla(int idPlanilla, int semanasMes, int idUsuarioRegistro, DataTable dtDetalles)
+        {
+            Respuesta<int> response = new Respuesta<int>();
+            int resultadoCodigo = 0;
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_RecalcularPlanilla", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Parámetros Cabecera
+                        cmd.Parameters.AddWithValue("@IdPlanilla", idPlanilla);
+                        cmd.Parameters.AddWithValue("@SemanasMes", semanasMes);
+                        cmd.Parameters.AddWithValue("@IdUsuarioRegistro", idUsuarioRegistro);
+
+                        // Parámetro Detalle (TVP: Table-Valued Parameter)
+                        SqlParameter tvpParam = new SqlParameter("@Detalles", SqlDbType.Structured)
+                        {
+                            TypeName = "dbo.typ_PlanillaDetalle",
+                            Value = dtDetalles
+                        };
+                        cmd.Parameters.Add(tvpParam);
+
+                        // Parámetro de Salida
+                        SqlParameter outputParam = new SqlParameter("@Resultado", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(outputParam);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+
+                        resultadoCodigo = Convert.ToInt32(outputParam.Value);
+                    }
+                }
+
+                response.Data = resultadoCodigo;
+
+                // Interpretamos los códigos de tu SP
+                if (resultadoCodigo == 1)
+                {
+                    response.Estado = true;
+                    response.Valor = "success";
+                    response.Mensaje = "Planilla recalculada y enviada a revisión correctamente.";
+                }
+                else if (resultadoCodigo == 2)
+                {
+                    response.Estado = false;
+                    response.Valor = "warning";
+                    response.Mensaje = "La planilla no se puede recalcular porque no está en estado 'Rechazado'.";
+                }
+                else
+                {
+                    response.Estado = false;
+                    response.Valor = "error";
+                    response.Mensaje = "Ocurrió un error en la base de datos al recalcular la planilla.";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Valor = "error";
+                response.Mensaje = "Error en Base de Datos: " + ex.Message;
+            }
+
+            return response;
+        }
+
     }
 }

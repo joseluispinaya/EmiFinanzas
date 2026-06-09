@@ -406,21 +406,25 @@
     <Content Include="js\UsuariosPage.js" />
     <Content Include="Login.aspx" />
     <Content Include="MasterCarreras\AsignacionDocente.aspx" />
+    <Content Include="MasterCarreras\ConsultasDetalleGeneral.aspx" />
     <Content Include="MasterCarreras\DetallePlanilla.aspx" />
     <Content Include="MasterCarreras\jsSecre\AsignacionDoc.js" />
     <Content Include="MasterCarreras\jsSecre\ConsultaAsistencia.js" />
+    <Content Include="MasterCarreras\jsSecre\ConsultasDetalleGeneral.js" />
     <Content Include="MasterCarreras\jsSecre\DetallePlanilla.js" />
     <Content Include="MasterCarreras\jsSecre\ListaAsignacion.js" />
     <Content Include="MasterCarreras\jsSecre\Masterpa.js" />
     <Content Include="MasterCarreras\jsSecre\PanelMaterias.js" />
     <Content Include="MasterCarreras\jsSecre\PanelNotificaciones.js" />
     <Content Include="MasterCarreras\jsSecre\PanelPlanilla.js" />
+    <Content Include="MasterCarreras\jsSecre\RecalcularPlanilla.js" />
     <Content Include="MasterCarreras\ListaAsignaciones.aspx" />
     <Content Include="MasterCarreras\PanelConsultaAsistencia.aspx" />
     <Content Include="MasterCarreras\PanelInicio.aspx" />
     <Content Include="MasterCarreras\PanelMaterias.aspx" />
     <Content Include="MasterCarreras\PanelNotificaciones.aspx" />
     <Content Include="MasterCarreras\PanelPlanilla.aspx" />
+    <Content Include="MasterCarreras\RecalcularPlanilla.aspx" />
     <Content Include="PanelAsistenciaDiaria.aspx" />
     <Content Include="PanelCarreras.aspx" />
     <Content Include="PanelDocentes.aspx" />
@@ -472,6 +476,13 @@
     <Compile Include="MasterCarreras\CarrerasMaster.Master.designer.cs">
       <DependentUpon>CarrerasMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="MasterCarreras\ConsultasDetalleGeneral.aspx.cs">
+      <DependentUpon>ConsultasDetalleGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\ConsultasDetalleGeneral.aspx.designer.cs">
+      <DependentUpon>ConsultasDetalleGeneral.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterCarreras\DetallePlanilla.aspx.cs">
       <DependentUpon>DetallePlanilla.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,6 +531,13 @@
     </Compile>
     <Compile Include="MasterCarreras\PanelPlanilla.aspx.designer.cs">
       <DependentUpon>PanelPlanilla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCarreras\RecalcularPlanilla.aspx.cs">
+      <DependentUpon>RecalcularPlanilla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCarreras\RecalcularPlanilla.aspx.designer.cs">
+      <DependentUpon>RecalcularPlanilla.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelAsistenciaDiaria.aspx.cs">
       <DependentUpon>PanelAsistenciaDiaria.aspx</DependentUpon>

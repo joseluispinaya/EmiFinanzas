@@ -133,7 +133,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="PanelPlanilla.aspx">Honorarios</a></li>
                                     <li><a href="PanelNotificaciones.aspx">Notificaciones</a></li>
-                                    <li><a href="javascript:void(0)">Consultas</a></li>
+                                    <li><a href="ConsultasDetalleGeneral.aspx">Consultas</a></li>
                                 </ul>
                             </li>
 

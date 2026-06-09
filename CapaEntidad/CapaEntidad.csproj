@@ -49,7 +49,10 @@
     <Compile Include="DTOs\MateriasDTO.cs" />
     <Compile Include="DTOs\ObtenerAsigDocDTO.cs" />
     <Compile Include="DTOs\PlanillaAprobacionDTO.cs" />
+    <Compile Include="DTOs\PlanillaCabeceraRecalcularDTO.cs" />
+    <Compile Include="DTOs\PlanillaDetalleGuardarDTO.cs" />
     <Compile Include="DTOs\PlanillaDTO.cs" />
+    <Compile Include="DTOs\ReportesDetalleDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Entidades\AsistenciaDiario.cs" />
     <Compile Include="Entidades\EAsignacionDocen.cs" />

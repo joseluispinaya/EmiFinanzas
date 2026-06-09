@@ -116,7 +116,7 @@
                     </tbody>
                     <tfoot class="bg-light font-weight-bold">
                         <tr>
-                            <td colspan="8" class="text-right">GRAN TOTAL A PAGAR:</td>
+                            <td colspan="8" class="text-right">MONTO TOTAL A PAGAR:</td>
                             <td class="text-success text-center" id="lblGranTotal">Bs. 0.00</td>
                         </tr>
                     </tfoot>

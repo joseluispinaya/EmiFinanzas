@@ -160,5 +160,151 @@ namespace CapaDatos
             }
         }
 
+        // 1. OBTENER HORARIOS AGRUPADOS
+        public Respuesta<List<HorarioAgrupadoDTO>> ObtenerHorariosAgrupados(int idDocente, int idCarrera, int idGestion)
+        {
+            var response = new Respuesta<List<HorarioAgrupadoDTO>> { Data = new List<HorarioAgrupadoDTO>() };
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ObtenerHorariosAgrupados", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdDocente", idDocente);
+                        cmd.Parameters.AddWithValue("@IdCarrera", idCarrera);
+                        cmd.Parameters.AddWithValue("@IdGestion", idGestion);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                response.Data.Add(new HorarioAgrupadoDTO
+                                {
+                                    IdAsignacion = Convert.ToInt32(dr["IdAsignacion"]),
+                                    NombreMateria = dr["NombreMateria"].ToString(),
+                                    NombreGrupo = dr["NombreGrupo"].ToString(),
+                                    NombreTipo = dr["NombreTipo"].ToString(),
+                                    Dias = dr["Dias"].ToString(),
+                                    Horarios = dr["Horarios"].ToString()
+                                });
+                            }
+                        }
+                    }
+                }
+                response.Estado = true;
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Mensaje = "Error BD (Horarios): " + ex.Message;
+            }
+            return response;
+        }
+
+        // 2. OBTENER DETALLE DE ASISTENCIA POR ASIGNACIÓN
+        public Respuesta<List<AsistenciaDetalleAsignacionDTO>> ObtenerAsistenciaDetallePorAsignacion(int idAsignacion, int idPeriodo)
+        {
+            var response = new Respuesta<List<AsistenciaDetalleAsignacionDTO>> { Data = new List<AsistenciaDetalleAsignacionDTO>() };
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_Consulta_AsistenciaDetalle_PorAsignacion", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdAsignacion", idAsignacion);
+                        cmd.Parameters.AddWithValue("@IdPeriodo", idPeriodo);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                response.Data.Add(new AsistenciaDetalleAsignacionDTO
+                                {
+                                    IdAsistenciaDiaria = Convert.ToInt32(dr["IdAsistenciaDiaria"]),
+                                    Fecha = Convert.ToDateTime(dr["Fecha"]).ToString("dd/MM/yyyy"),
+                                    NombreDia = dr["NombreDia"].ToString(),
+                                    NombreMateria = dr["NombreMateria"].ToString(),
+
+                                    EntradaOficial = ((TimeSpan)dr["EntradaOficial"]).ToString(@"hh\:mm"),
+                                    SalidaOficial = ((TimeSpan)dr["SalidaOficial"]).ToString(@"hh\:mm"),
+
+                                    // Las marcadas pueden ser nulas si hay falta o permiso
+                                    EntradaMarcada = dr["EntradaMarcada"] != DBNull.Value ? ((TimeSpan)dr["EntradaMarcada"]).ToString(@"hh\:mm") : "",
+                                    SalidaMarcada = dr["SalidaMarcada"] != DBNull.Value ? ((TimeSpan)dr["SalidaMarcada"]).ToString(@"hh\:mm") : "",
+
+                                    MinutosAtraso = Convert.ToInt32(dr["MinutosAtraso"]),
+                                    EstadoAsistencia = dr["EstadoAsistencia"].ToString(),
+                                    IdEstado = Convert.ToInt32(dr["IdEstado"])
+                                });
+                            }
+                        }
+                    }
+                }
+                response.Estado = true;
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Mensaje = "Error BD (Asistencia): " + ex.Message;
+            }
+            return response;
+        }
+
+        // 3. OBTENER HISTORIAL FINANCIERO (PLANILLA) POR ASIGNACIÓN
+        public Respuesta<List<PlanillaDetalleAsignacionDTO>> ObtenerPlanillaDetallePorAsignacion(int idAsignacion)
+        {
+            var response = new Respuesta<List<PlanillaDetalleAsignacionDTO>> { Data = new List<PlanillaDetalleAsignacionDTO>() };
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_ObtenerPlanillaDetalle_PorAsignacion", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdAsignacion", idAsignacion);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                response.Data.Add(new PlanillaDetalleAsignacionDTO
+                                {
+                                    IdDetalle = Convert.ToInt32(dr["IdDetalle"]),
+                                    IdPlanilla = Convert.ToInt32(dr["IdPlanilla"]),
+                                    Docente = dr["Docente"].ToString(),
+                                    NombreMateria = dr["NombreMateria"].ToString(),
+                                    NombreTipo = dr["NombreTipo"].ToString(),
+                                    NombreGrupo = dr["NombreGrupo"].ToString(),
+                                    HT = Convert.ToInt32(dr["HT"]),
+                                    HP = Convert.ToInt32(dr["HP"]),
+                                    HL = Convert.ToInt32(dr["HL"]),
+                                    CostoHora = Convert.ToDecimal(dr["CostoHora"]),
+                                    TotalMinutosAtraso = Convert.ToInt32(dr["TotalMinutosAtraso"]),
+                                    TotalHorasNoTrabajadas = Convert.ToDecimal(dr["TotalHorasNoTrabajadas"]),
+                                    TotalHorasPeriodo = Convert.ToDecimal(dr["TotalHorasPeriodo"]),
+                                    TotalHorasTrabajadas = Convert.ToDecimal(dr["TotalHorasTrabajadas"]),
+                                    IngresoTotal = Convert.ToDecimal(dr["IngresoTotal"]),
+                                    TotalDescuentos = Convert.ToDecimal(dr["TotalDescuentos"]),
+                                    TotalAPagar = Convert.ToDecimal(dr["TotalAPagar"])
+                                });
+                            }
+                        }
+                    }
+                }
+                response.Estado = true;
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Mensaje = "Error BD (Detalle Planilla): " + ex.Message;
+            }
+            return response;
+        }
+
     }
 }

@@ -24,7 +24,7 @@
             <div class="card shadow-sm border-0" id="cargann">
                 <div class="card-header card-header-emi py-3 px-4">
                     <h3 class="card-title m-0 text-white">
-                        <i class="fas fa-file-invoice-dollar mr-2"></i>Generación Planilla de Pago
+                        <i class="fas fa-money-check mr-2"></i>Generación Planilla de Pago
                     </h3>
                 </div>
                 <div class="card-body">
