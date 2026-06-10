@@ -411,5 +411,60 @@ namespace CapaDatos
             return response;
         }
 
+        public Respuesta<CabeceraReporteDocenteDTO> ObtenerDetallePlanillaCabeceraReporte(int idDetalle)
+        {
+            var response = new Respuesta<CabeceraReporteDocenteDTO>();
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_DetallePlanillaCabeceraReporte", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdDetalle", idDetalle);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            // Usamos un simple 'if' porque solo esperamos un registro
+                            if (dr.Read())
+                            {
+                                response.Data = new CabeceraReporteDocenteDTO
+                                {
+                                    Docente = dr["Docente"].ToString(),
+                                    NroCi = dr["NroCi"].ToString(),
+                                    NombreGestion = dr["NombreGestion"].ToString(),
+                                    NombreCarrera = dr["NombreCarrera"].ToString(),
+                                    PeriodoPago = dr["PeriodoPago"].ToString(),
+                                    SemanasMes = Convert.ToInt32(dr["SemanasMes"]),
+                                    FechaInicio = dr["FechaInicio"].ToString(),
+                                    FechaFin = dr["FechaFin"].ToString()
+                                };
+
+                                response.Estado = true;
+                                response.Valor = "success";
+                                response.Mensaje = "Datos de cabecera obtenidos correctamente.";
+                            }
+                            else
+                            {
+                                response.Estado = false;
+                                response.Valor = "warning";
+                                response.Mensaje = "No se encontraron los datos de la cabecera para este reporte.";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Valor = "error";
+                response.Mensaje = "Error BD (Reporte Cabecera): " + ex.Message;
+            }
+
+            return response;
+        }
+
     }
 }

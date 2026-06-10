@@ -106,7 +106,7 @@
                             <th>Hrs. Mes</th>
                             <th title="Horas No Trabajadas">Hrs N/T</th>
                             <th class="text-danger" title="Minutos de Atraso">Atraso</th>
-                            <th title="Ingreso Bruto">Bruto</th>
+                            <th title="Ingreso Total">Tot. Ingr.</th>
                             <th class="text-danger">Descuento</th>
                             <th title="Líquido Pagable">Tot. Pago</th>
                             <%--<th class="text-success font-weight-bold">Total Pagar</th>--%>

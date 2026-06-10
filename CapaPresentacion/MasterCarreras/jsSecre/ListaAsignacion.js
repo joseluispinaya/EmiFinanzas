@@ -73,7 +73,7 @@ function listaAsignaciones() {
                 "className": "align-middle text-center",
                 "render": function (data, type, row) {
                     return `
-                        <div class="font-weight-bold text-success mb-1"><i class="fas fa-dollar-sign mr-1"></i>${data.toFixed(2)} <small class="text-muted">/ Hr</small></div>
+                        <div class="font-weight-bold text-success mb-1"><i class="fas fa-money-bill mr-1"></i>${data.toFixed(2)} <small class="text-muted">/ Hr</small></div>
                         <div class="small font-weight-bold text-info"><i class="fas fa-clock mr-1"></i>${row.CargaHorariaPeriodo} Hrs Totales</div>`;
                 }
             },
@@ -81,9 +81,6 @@ function listaAsignaciones() {
             // 5. Columna Botones
             {
                 "defaultContent": `
-                    <button class="btn btn-outline-primary btn-editar btn-sm shadow-sm mr-1" title="Editar Asignación">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>
                     <button class="btn btn-outline-info btn-horarios btn-sm shadow-sm" title="Ver Horarios Programados">
                         <i class="fas fa-calendar-alt"></i>
                     </button>`,

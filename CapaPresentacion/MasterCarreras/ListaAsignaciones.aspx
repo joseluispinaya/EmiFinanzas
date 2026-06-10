@@ -30,9 +30,9 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row justify-content-center mb-4">
+                    <%--<div class="row justify-content-center mb-4">
                         <button type="button" id="btnRegistro" class="btn btn-emi-warning btn-lg px-5 shadow font-weight-bold"><i class="fas fa-user-plus mr-2"></i>Nuevo Registro</button>
-                    </div>
+                    </div>--%>
 
                     <div class="table-responsive">
                         <table id="tbAsignaciones" class="table table-sm table-striped table-bordered table-hover w-100 align-middle">

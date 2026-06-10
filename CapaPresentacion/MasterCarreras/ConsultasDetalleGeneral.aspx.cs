@@ -36,5 +36,17 @@ namespace CapaPresentacion.MasterCarreras
             return NConsultaAsistencia.GetInstance().ObtenerAsistenciaDetallePorAsignacion(idAsignacion, idPeriodo);
         }
 
+        [WebMethod]
+        public static Respuesta<List<PlanillaDetalleAsignacionDTO>> ObtenerPlanillaDetallePorAsignacion(int idAsignacion)
+        {
+            return NConsultaAsistencia.GetInstance().ObtenerPlanillaDetallePorAsignacion(idAsignacion);
+        }
+
+        [WebMethod]
+        public static Respuesta<CabeceraReporteDocenteDTO> DetallePlanillaCabeceraReporte(int idDetalle)
+        {
+            return NPagosPlanilla.GetInstance().ObtenerDetallePlanillaCabeceraReporte(idDetalle);
+        }
+
     }
 }
