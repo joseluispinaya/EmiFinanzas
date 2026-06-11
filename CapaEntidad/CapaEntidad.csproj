@@ -53,6 +53,7 @@
     <Compile Include="DTOs\PlanillaCabeceraRecalcularDTO.cs" />
     <Compile Include="DTOs\PlanillaDetalleGuardarDTO.cs" />
     <Compile Include="DTOs\PlanillaDTO.cs" />
+    <Compile Include="DTOs\ReporteAsistenciaDTO.cs" />
     <Compile Include="DTOs\ReportesDetalleDTO.cs" />
     <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Entidades\AsistenciaDiario.cs" />

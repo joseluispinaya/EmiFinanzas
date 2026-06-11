@@ -438,6 +438,7 @@ namespace CapaDatos
                                     NombreCarrera = dr["NombreCarrera"].ToString(),
                                     PeriodoPago = dr["PeriodoPago"].ToString(),
                                     SemanasMes = Convert.ToInt32(dr["SemanasMes"]),
+                                    IdEstadoPlanilla = Convert.ToInt32(dr["IdEstadoPlanilla"]),
                                     FechaInicio = dr["FechaInicio"].ToString(),
                                     FechaFin = dr["FechaFin"].ToString()
                                 };

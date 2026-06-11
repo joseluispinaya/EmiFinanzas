@@ -48,5 +48,11 @@ namespace CapaPresentacion.MasterCarreras
             return NPagosPlanilla.GetInstance().ObtenerDetallePlanillaCabeceraReporte(idDetalle);
         }
 
+        [WebMethod]
+        public static Respuesta<List<ReporteAsistenciaDTO>> AsistenciaPorAsignacionRpt(int idAsignacion, int idPeriodo)
+        {
+            return NConsultaAsistencia.GetInstance().AsistenciaPorAsignacionRpt(idAsignacion, idPeriodo);
+        }
+
     }
 }

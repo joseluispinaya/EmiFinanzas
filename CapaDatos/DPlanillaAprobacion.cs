@@ -48,6 +48,7 @@ namespace CapaDatos
                                 rptLista.Add(new PlanillaListaDTO
                                 {
                                     IdPlanilla = Convert.ToInt32(dr["IdPlanilla"]),
+                                    IdPeriodo = Convert.ToInt32(dr["IdPeriodo"]),
                                     PeriodoPago = dr["PeriodoPago"].ToString(),
                                     SemanasMes = Convert.ToInt32(dr["SemanasMes"]),
                                     Fecha = dr["Fecha"].ToString(),

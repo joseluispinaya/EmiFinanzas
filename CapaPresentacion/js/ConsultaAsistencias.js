@@ -87,7 +87,7 @@ $(document).ready(function () {
             return;
         }
 
-        $("#btnReporte").prop("disabled", true); // Bloqueamos reporte temporalmente
+        //$("#btnReporte").prop("disabled", true); // Bloqueamos reporte temporalmente
         $("#loadinzero").LoadingOverlay("show"); // Bloqueamos el contenedor principal
 
         // Peticiones AJAX en paralelo
@@ -338,7 +338,7 @@ function limpiarPanelDocente() {
     $("#imgDoce").attr("src", "images/sinImagen.png");
 
     $("#seccionMaterias").hide();
-    $("#btnReporte").prop("disabled", true);
+    //$("#btnReporte").prop("disabled", true);
     $("#contenedorHorario").html(`
         <div class="alert alert-secondary text-center py-4 mb-0 shadow-sm" style="font-size: 0.85rem;">
             <i class="fas fa-info-circle d-block mb-2" style="font-size: 1.5rem;"></i> 
@@ -374,7 +374,7 @@ function procesarTarjetasMateria() {
     }
 
     $("#seccionMaterias").show();
-    $("#btnReporte").prop("disabled", false);
+    //$("#btnReporte").prop("disabled", false);
 
     // Creamos los botones
     materiasUnicas.forEach((materia, index) => {

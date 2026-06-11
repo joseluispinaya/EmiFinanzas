@@ -306,5 +306,47 @@ namespace CapaDatos
             return response;
         }
 
+        public Respuesta<List<ReporteAsistenciaDTO>> AsistenciaPorAsignacionRpt(int idAsignacion, int idPeriodo)
+        {
+            var response = new Respuesta<List<ReporteAsistenciaDTO>> { Data = new List<ReporteAsistenciaDTO>() };
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand cmd = new SqlCommand("usp_AsistenciaMatrizRpt", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdAsignacion", idAsignacion);
+                        cmd.Parameters.AddWithValue("@IdPeriodo", idPeriodo);
+
+                        con.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                response.Data.Add(new ReporteAsistenciaDTO
+                                {
+                                    NombreMes = dr["NombreMes"].ToString(),
+                                    MesNumero = Convert.ToInt32(dr["MesNumero"]),
+                                    Dia = Convert.ToInt32(dr["Dia"]),
+                                    Fecha = Convert.ToDateTime(dr["Fecha"]).ToString("dd/MM/yyyy"),
+
+                                    EstadoLetra = dr["EstadoLetra"].ToString(),
+                                    MinutosAtraso = Convert.ToInt32(dr["MinutosAtraso"])
+                                });
+                            }
+                        }
+                    }
+                }
+                response.Estado = true;
+            }
+            catch (Exception ex)
+            {
+                response.Estado = false;
+                response.Mensaje = "Error BD (Asistencia): " + ex.Message;
+            }
+            return response;
+        }
+
     }
 }

@@ -57,5 +57,9 @@ namespace CapaNegocio
             return DConsultaAsistencia.GetInstance().ObtenerPlanillaDetallePorAsignacion(idAsignacion);
         }
 
+        public Respuesta<List<ReporteAsistenciaDTO>> AsistenciaPorAsignacionRpt(int idAsignacion, int idPeriodo)
+        {
+            return DConsultaAsistencia.GetInstance().AsistenciaPorAsignacionRpt(idAsignacion, idPeriodo);
+        }
     }
 }

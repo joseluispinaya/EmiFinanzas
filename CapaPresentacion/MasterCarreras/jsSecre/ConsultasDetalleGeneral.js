@@ -86,6 +86,11 @@ $(document).ready(function () {
             $("#tbDetalle").DataTable().clear().draw();
         }
 
+        $("#lblTotalMin").text("Detalle de asistencias");
+
+        // para la nueva table dinamica
+        $("#contenedorMatrizAsistencia").html(`<div class="alert alert-warning text-center">Realice la búsqueda para visualizar.</div>`);
+
         $("#btnReporte").prop("disabled", true);
     });
 
@@ -143,7 +148,7 @@ function cargarPeriodos(idGestion) {
     };
 
     $.ajax({
-        url: "/PanelPagos.aspx/ObtenerPeriodosPago",
+        url: "PanelNotificaciones.aspx/ListarPlanillasPorGestion",
         type: "POST",
         data: JSON.stringify(request),
         contentType: 'application/json; charset=utf-8',
@@ -154,7 +159,7 @@ function cargarPeriodos(idGestion) {
                 let opcionesHTML = '<option value="">Seleccione</option>';
 
                 $.each(response.d.Data, function (i, row) {
-                    opcionesHTML += `<option value="${row.IdPeriodo}">${row.Descripcion}</option>`;
+                    opcionesHTML += `<option value="${row.IdPeriodo}">${row.PeriodoPago}</option>`;
                 });
 
                 $("#cboPeriodo").html(opcionesHTML);
@@ -232,6 +237,11 @@ function renderizarTarjetasMaterias(listaHorarios) {
                 El docente no tiene asignaciones en esta gestión.
             </div>
         `);
+
+        $("#lblTotalMin").text("Detalle de asistencias");
+        // para la nueva table dinamica
+        $("#contenedorMatrizAsistencia").html(`<div class="alert alert-warning text-center">Realice la búsqueda para visualizar.</div>`);
+
         // Limpiar tabla si estaba llena
         if ($.fn.DataTable.isDataTable("#tbDetalle")) {
             $("#tbDetalle").DataTable().clear().draw();
@@ -333,6 +343,7 @@ $("#contenedorHorario").on("click", ".btn-cargar-detalle", function () {
 
 
     cargarDetalleListAsistencia(materiaSelect.IdAsignacion, periodoSeleccionadoGlobal);
+    detalleListAsistenciaRpt(materiaSelect.IdAsignacion, periodoSeleccionadoGlobal);
 
     // 5. Cargar DataTables
     detallePlanillaAsignacion(materiaSelect.IdAsignacion);
@@ -341,6 +352,111 @@ $("#contenedorHorario").on("click", ".btn-cargar-detalle", function () {
 // =========================================================
 // PASO 4: DATATABLES DE ASISTENCIA
 // =========================================================
+
+let listAsistenciaRpt = [];
+function detalleListAsistenciaRpt(idAsignacion, idPeriodo) {
+
+    var request = {
+        idAsignacion: parseInt(idAsignacion),
+        idPeriodo: parseInt(idPeriodo)
+    };
+
+    $.ajax({
+        url: "ConsultasDetalleGeneral.aspx/AsistenciaPorAsignacionRpt",
+        type: "POST",
+        data: JSON.stringify(request),
+        contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        success: function (response) {
+            if (response.d.Estado) {
+                listAsistenciaRpt = response.d.Data;
+                renderizarMatrizAsistencia(listAsistenciaRpt);
+            } else {
+                MostrarAlerta("¡Advertencia!", response.d.Mensaje, "warning");
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        }
+    });
+}
+
+// Suponiendo que 'datos' es lo que te devuelve response.d.Data
+function renderizarMatrizAsistencia(datos) {
+
+    //let totalMin = 0;
+
+    let contenedor = $("#contenedorMatrizAsistencia");
+    contenedor.empty();
+    $("#lblTotalMin").text("Detalle de asistencias");
+
+    if (!datos || datos.length === 0) {
+        contenedor.html('<div class="alert alert-warning text-center">No hay registros de asistencia para mostrar.</div>');
+        return;
+    }
+
+    let totalMinutos = datos.reduce((acc, item) => acc + parseInt(item.MinutosAtraso), 0);
+    $("#lblTotalMin").text(`Total Atrasos: ${totalMinutos} Minutos`);
+
+    // 1. Agrupamos los datos por Mes
+    // Resultado esperado: { "ENERO": [{Dia: 26, Letra: 'P'}, ...], "FEBRERO": [...] }
+    let mesesAgrupados = {};
+
+    datos.forEach(item => {
+
+        //totalMin = totalMin + parseInt(item.MinutosAtraso)
+
+        if (!mesesAgrupados[item.NombreMes]) {
+            mesesAgrupados[item.NombreMes] = [];
+        }
+        mesesAgrupados[item.NombreMes].push(item);
+    });
+
+    // 2. Construimos las 3 filas de la tabla (Encabezado de Meses, Fila de Fechas, Fila de Asistencia)
+    let trMeses = `<tr><th class="align-middle text-center bg-primary text-white" style="width: 120px;">DETALLE</th>`;
+    let trFechas = `<tr><td class="font-weight-bold text-left bg-light">FECHAS</td>`;
+    let trAsistencia = `<tr><td class="font-weight-bold text-left bg-light">ASISTENCIA</td>`;
+
+    // 3. Iteramos sobre los grupos para armar las columnas
+    for (const mes in mesesAgrupados) {
+        let diasDelMes = mesesAgrupados[mes];
+
+        // El colspan del mes es la cantidad de días que tuvo clases en ese mes
+        trMeses += `<th colspan="${diasDelMes.length}" class="text-center bg-primary text-white border-left border-right">${mes}</th>`;
+
+        diasDelMes.forEach(d => {
+            trFechas += `<td class="text-center font-weight-bold border">${d.Dia}</td>`;
+
+            // Pintamos de rojo si es Falta (F), verde si es Presente (P)
+            let colorLetra = "text-dark";
+            if (d.EstadoLetra === 'P') colorLetra = "text-success";
+            if (d.EstadoLetra === 'F') colorLetra = "text-danger";
+            if (d.EstadoLetra === 'L') colorLetra = "text-warning";
+
+            trAsistencia += `<td class="text-center font-weight-bold border ${colorLetra}">${d.EstadoLetra}</td>`;
+        });
+    }
+
+    trMeses += `</tr>`;
+    trFechas += `</tr>`;
+    trAsistencia += `</tr>`;
+
+    // 4. Armamos la tabla final y la inyectamos
+    let tablaHTML = `
+        <table class="table table-sm table-bordered shadow-sm" style="font-size: 0.85rem;">
+            <thead>
+                ${trMeses}
+            </thead>
+            <tbody>
+                ${trFechas}
+                ${trAsistencia}
+            </tbody>
+        </table>
+    `;
+
+    contenedor.html(tablaHTML);
+}
+
 function cargarTablaAsistencia(idAsignacion, idPeriodo) {
     if ($.fn.DataTable.isDataTable("#tbDetalle")) {
         $("#tbDetalle").DataTable().destroy();
@@ -597,8 +713,14 @@ $("#btnReporte").on("click", function () {
         dataType: "json",
         success: function (response) {
             if (response.d.Estado) {
-                reportePagoyAsistenciaPDF(response.d.Data);
-                //console.log(response.d.Data);
+                let data = response.d.Data;
+
+                if (data.IdEstadoPlanilla === 2) { // APROBADO
+
+                    reportePagoyAsistenciaPDF(data);
+                } else {
+                    MostrarAlerta("¡Advertencia!", "La planilla no se encuentra APROBADO no puede generar reporte aun", "warning");
+                }
             } else {
                 MostrarAlerta("¡Advertencia!", response.d.Mensaje, "warning");
             }

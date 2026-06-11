@@ -4,6 +4,7 @@
     public class PlanillaListaDTO
     {
         public int IdPlanilla { get; set; }
+        public int IdPeriodo { get; set; }
         public string PeriodoPago { get; set; }
         public int SemanasMes { get; set; }
         public string Fecha { get; set; }

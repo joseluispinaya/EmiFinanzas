@@ -30,6 +30,7 @@
                             <div class="form-group col-md-3 mb-0">
                                 <label class="small font-weight-bold text-dark mb-1">Carrera</label>
                                 <select class="custom-select custom-select-sm shadow-sm" id="cboCarreras" disabled>
+                                    <option value="">Seleccione Grado...</option>
                                 </select>
                             </div>
 
@@ -60,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-end mb-2">
+                    <div class="d-flex justify-content-end mb-3">
                         <button type="button" id="btnLlenadoRapido" class="btn btn-sm btn-success shadow-sm font-weight-bold">
                             <i class="fas fa-bolt mr-1"></i>Asistencia Perfecta (Feriados/Parciales)
                         </button>

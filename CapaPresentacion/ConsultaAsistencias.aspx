@@ -41,9 +41,6 @@
                     <div class="col-md-5 mb-3">
                         <div class="card border-0 shadow-sm h-100 bg-light">
                             <div class="card-body p-3">
-                                <%--<h6 class="font-weight-bold text-dark border-bottom pb-2 mb-3">
-                                    <i class="fas fa-filter text-primary mr-2"></i>Criterios de Búsqueda
-                                </h6>--%>
 
                                 <div class="row">
                                     <div class="col-md-6 form-group mb-2">
@@ -67,7 +64,14 @@
                                     </select>
                                 </div>
 
-                                <div class="row align-items-end">
+                                <div class="border-top pt-3 d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="font-weight-bold text-danger m-0"><i class="fas fa-calendar-alt text-danger mr-2"></i>Modificar Asistencia</h6>
+                                        <small class="text-muted">Opcion para poder modificar asistencia diaria de un docente.</small>
+                                    </div>
+                                </div>
+
+                                <%--<div class="row align-items-end">
                                     <div class="col-md-6 form-group mb-0">
                                         <label class="small font-weight-bold text-muted mb-1">Gestión</label>
                                         <select class="custom-select custom-select-sm shadow-sm border-0" id="cboGestion"></select>
@@ -82,7 +86,7 @@
 
                                 <button type="button" id="btnBuscar" class="btn btn-primary btn-block shadow-sm font-weight-bold mt-3">
                                     <i class="fas fa-search mr-2"></i>Consultar Asistencia
-                                </button>
+                                </button>--%>
                             </div>
                         </div>
                     </div>
@@ -100,7 +104,40 @@
                                     </div>
                                 </div>
 
-                                <div class="border-top pt-3 mt-auto d-flex justify-content-between align-items-center">
+                                <div class="row align-items-end">
+                                    <div class="col-md-4 form-group mb-0">
+                                        <label class="small font-weight-bold text-dark mb-1">Gestión</label>
+                                        <div class="input-group input-group-sm shadow-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text bg-white"><i
+                                                    class="fas fa-calendar-alt text-primary"></i></span>
+                                            </div>
+                                            <select class="custom-select custom-select-sm border-left-0" id="cboGestion"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-group mb-0">
+                                        <label class="small font-weight-bold text-dark mb-1">Periodo de Pago</label>
+                                        <div class="input-group input-group-sm shadow-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text bg-white"><i
+                                                    class="fas fa-calendar-check text-success"></i></span>
+                                            </div>
+                                            <select class="custom-select custom-select-sm border-left-0" id="cboPeriodo" disabled>
+                                                <option value="">Seleccione Gestión...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="button" id="btnBuscar"
+                                            class="btn btn-sm btn-primary btn-block shadow-sm font-weight-bold">
+                                            <i class="fas fa-search mr-2"></i>Buscar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <%--<div class="border-top pt-3 mt-auto d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 class="font-weight-bold text-dark m-0"><i class="fas fa-file-pdf text-danger mr-2"></i>Exportar Documento</h6>
                                         <small class="text-muted">Genera el reporte detallado del periodo.</small>
@@ -108,7 +145,7 @@
                                     <button type="button" id="btnReporte" class="btn btn-warning btn-sm shadow-sm font-weight-bold text-dark px-4" disabled>
                                         <i class="fas fa-print mr-2"></i>IMPRIMIR REPORTE
                                     </button>
-                                </div>
+                                </div>--%>
 
                             </div>
                         </div>

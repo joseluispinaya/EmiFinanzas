@@ -150,7 +150,7 @@
                                     <i class="fas fa-clipboard-list text-primary mr-2"></i>Detalle de Asistencia
                                 </h6>
                                 <button type="button" id="btnReporte" class="btn btn-warning btn-sm shadow-sm font-weight-bold" disabled>
-                                    <i class="fas fa-print mr-1"></i> Exportar
+                                    <i class="fas fa-print mr-1"></i> Exportar Planilla
                                 </button>
                             </div>
 
@@ -209,6 +209,28 @@
         </div>
     </div>
 </div>
+
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="card border-0 shadow-sm bg-white" style="border-left: 4px solid #E6BC00 !important;">
+
+                <div class="card-body p-3">
+                    <h6 class="font-weight-bold text-dark m-0 text-left border-bottom pb-2 mb-3">
+                        <i class="fas fa-clipboard-check mr-2 text-primary"></i>Detalle asistencias
+                    </h6>
+
+                    <div class="table-responsive mt-3" id="contenedorMatrizAsistencia">
+                    </div>
+
+                    <h5 class="font-weight-bold text-dark m-0 text-right pb-2 mt-3">
+                        <i class="fas fa-clock mr-2 text-primary"></i>
+                        <span id="lblTotalMin">Total Atrasos: 0</span>
+                    </h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="footer" runat="server">
     <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>

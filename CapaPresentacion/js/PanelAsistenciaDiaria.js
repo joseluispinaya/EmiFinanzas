@@ -140,7 +140,7 @@ function cargarCarreras(idGrados) {
         success: function (response) {
             if (response.d.Estado) {
 
-                let opcionesHTML = '<option value="">Seleccione</option>';
+                let opcionesHTML = '<option value="">Seleccione Carrera</option>';
 
                 $.each(response.d.Data, function (i, row) {
                     opcionesHTML += `<option value="${row.IdCarrera}">${row.NombreCarrera}</option>`;
